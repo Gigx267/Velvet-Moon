@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>The Menu — Velvet Moon Lounge & Restaurant</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- FontAwesome for precise iconography -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP & Lenis Smooth Scroll Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #030303;
+      overflow-x: hidden;
+    }
+    
+    html.lenis {
+      height: auto;
+    }
+    .lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+
+    .premium-text-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #B5B5B5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 60%, #AA7C11 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .apple-transition {
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(25px);
+    }
+
+    /* Custom scrollbar for premium menu categories container */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="text-[#F5F5F7] antialiased bg-[#030303] selection:bg-[#D4AF37] selection:text-black">
+
+  <!-- FLOATING NAVIGATION -->
+  <div id="main-nav" class="fixed top-0 left-0 w-full z-50 px-3 sm:px-6 py-3 transform -translate-y-20 opacity-0">
+    <header class="max-w-5xl mx-auto h-14 rounded-full bg-[#09090B]/70 backdrop-blur-xl border border-white/[0.06] shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex items-center justify-between px-4 sm:px-8 apple-transition">
+      <a href="index.html" class="text-[13px] sm:text-[14px] font-bold tracking-widest uppercase text-white">
+        Velvet <span class="text-[#D4AF37]">Moon</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-[11px] font-medium text-[#86868B] uppercase tracking-wider">
+        <a href="#" class="text-white tracking-wide">Our Menu</a>
+        <a href="story.html" class="hover:text-white apple-transition">Our Story</a>
+        <a href="index.html#contact" class="hover:text-white apple-transition">Find Us</a>
+      </nav>
+
+      <a href="https://wa.me/2347045524637" target="_blank" class="bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3.5 sm:px-5 py-2 rounded-full hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-[1.02] apple-transition flex items-center gap-1.5">
+        <i class="fa-brands fa-whatsapp text-xs"></i> Book a Table
+      </a>
+    </header>
+  </div>
+
+  <!-- HERO TITLE ARCHITECTURE -->
+  <section class="pt-32 pb-12 px-4 relative overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto text-center space-y-4">
+      <span id="menu-tag" class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.3em] block opacity-0 transform translateY-4">The Culinary Collection</span>
+      <h1 id="menu-title" class="text-4xl sm:text-6xl font-bold tracking-tight text-white premium-text-gradient opacity-0 transform translateY-4">
+        Food & <span class="gold-text-gradient">Elixirs.</span>
+      </h1>
+      <p id="menu-desc" class="text-[13px] sm:text-[14px] text-[#86868B] font-light max-w-lg mx-auto opacity-0 transform translateY-4">
+        Exquisite ingredients meticulously gathered and combined. Prices are exclusive of VAT and standard service charge.
+      </p>
+    </div>
+  </section>
+
+  <!-- SEARCH & CATEGORY FILTER STICKY BAR -->
+  <section id="menu-controls" class="sticky top-20 z-40 px-4 mb-12 opacity-0 transform translateY-4">
+    <div class="max-w-3xl mx-auto space-y-4">
+      
+      <!-- Interactive Luxury Search Input -->
+      <div class="relative max-w-md mx-auto">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-xs text-[#636366]"></i>
+        <input type="text" id="menu-search" placeholder="Search dish or flavor notes..." class="w-full bg-[#09090B] border border-white/[0.06] rounded-full pl-10 pr-4 py-2.5 text-[13px] text-white focus:outline-none focus:border-[#D4AF37]/40 placeholder-[#636366] apple-transition">
+      </div>
+
+      <!-- Horizontal Tab Capsule Engine -->
+      <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1 mask-right">
+        <button onclick="filterCategory('all')" class="category-btn active px-4 py-1.5 rounded-full border border-[#D4AF37] text-xs font-medium uppercase tracking-wider text-black bg-[#D4AF37] shrink-0 apple-transition">All</button>
+        <button onclick="filterCategory('appetizers')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Appetizers</button>
+        <button onclick="filterCategory('heritage')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Nigerian Heritage</button>
+        <button onclick="filterCategory('italian')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Italian Craft</button>
+        <button onclick="filterCategory('burgers')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Gourmet Burgers</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GRID COMPILATION WRAPPER -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-28">
+    <div id="menu-grid" class="grid md:grid-cols-2 gap-x-12 gap-y-10 items-start">
+      
+      <!-- ITEM: APPETIZER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Buffalo Chicken Wings</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy wings tossed in a spicy, buttery hot sauce.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,500</span>
+      </div>
+
+      <!-- ITEM: APPETIZER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Steak Bites</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Tender beef cubes seared with garlic and black pepper sauce.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦9,500</span>
+      </div>
+
+      <!-- ITEM: APPETIZER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Suya Chicken Skewers</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Grilled chicken breast pieces rubbed with traditional spicy suya pepper.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦9,000</span>
+      </div>
+
+      <!-- ITEM: HERITAGE (CHEF SPECIAL CARD GRID BREAKER) -->
+      <div class="menu-item md:col-span-2 bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/20 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#D4AF37]/40 shadow-xl group reveal-item" data-category="heritage">
+        <div class="space-y-1.5 max-w-2xl">
+          <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">Chef's Special</div>
+          <h4 class="text-[16px] sm:text-[18px] font-semibold text-white group-hover:text-[#D4AF37] name-target apple-transition">Velvet Moon Snail Jollof</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#A1A1A6] font-light leading-snug">Perfectly cleaned snails, slow-cooked in a rich, spicy sauce. Served with smoky firewood Jollof rice and sweet fried plantains.</p>
+        </div>
+        <span class="text-[16px] sm:text-[18px] font-bold text-[#D4AF37] shrink-0">₦23,500</span>
+      </div>
+
+      <!-- ITEM: HERITAGE -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Fried Chicken & Rice</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy fried chicken served with your choice of fried rice or Jollof rice.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦16,000</span>
+      </div>
+
+      <!-- ITEM: HERITAGE -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Grilled Croaker Fish</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Whole fresh croaker fish grilled over an open flame, served with golden fried yam.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,500</span>
+      </div>
+
+      <!-- ITEM: ITALIAN -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Lasagna Emigliana</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Baked layers of pasta stacked with premium minced meat sauce.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦26,500</span>
+      </div>
+
+      <!-- ITEM: ITALIAN -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Marry Me Chicken Pizza</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868b] font-light leading-snug">Thin-crust pizza topped with rich parmesan cream, shredded chicken, and sun-dried tomatoes.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦22,000</span>
+      </div>
+
+      <!-- ITEM: BURGER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="burgers">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Double Cheeseburger</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Two smashed beef patties layered with double cheese, pickles, and classic mustard.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,000</span>
+      </div>
+
+      <!-- ITEM: BURGER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="burgers">
+        <div class="space-y-1 max-w-[75%]">
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Supreme Chicken Burger</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy fried chicken breast with melted Gouda cheese, rocket leaves, and garlic mayo.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦13,500</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#030303] py-8 px-4 sm:px-8 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[#636366] text-[11px] font-light gap-3 text-center sm:text-left">
+      <p>&copy; 2026 Velvet Moon Collective. Built beautifully for mobile and web screens.</p>
+      <div class="flex space-x-4">
+        <a href="index.html" class="hover:text-white apple-transition">Return Home</a>
+        <a href="#" class="hover:text-white apple-transition">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CONTROLS ENGINE & ANIMATION MATRIX SCRIPT -->
+  <script>
+    // Initialize Smooth Scroll 
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true
+    });
+    function raf(time) {
+      lenis.tick(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Intro Entrance Sequence
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      tl.to('#main-nav', { y: 0, opacity: 1, duration: 1.2 })
+        .to('#menu-tag', { y: 0, opacity: 1, duration: 0.8 }, '-=0.8')
+        .to('#menu-title', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#menu-desc', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#menu-controls', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6');
+
+      // Infinite loop observer hook for individual menu elements 
+      gsap.utils.toArray('.reveal-item').forEach(item => {
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 88%',
+            end: 'bottom 12%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+    });
+
+    // INSTANT FILTER ENGINE (With native fade triggers)
+    function filterCategory(cat) {
+      // Toggle button active states visually
+      const buttons = document.querySelectorAll('.category-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-[#D4AF37]', 'text-black', 'border-[#D4AF37]');
+        btn.classList.add('bg-[#09090B]', 'text-[#86868B]', 'border-white/[0.06]');
+      });
+      
+      const activeBtn = event.currentTarget || buttons[0];
+      activeBtn.classList.remove('bg-[#09090B]', 'text-[#86868B]', 'border-white/[0.06]');
+      activeBtn.classList.add('bg-[#D4AF37]', 'text-black', 'border-[#D4AF37]');
+
+      const items = document.querySelectorAll('.menu-item');
+      
+      gsap.to(items, {
+        opacity: 0,
+        y: 15,
+        duration: 0.2,
+        onComplete: () => {
+          items.forEach(item => {
+            if (cat === 'all' || item.getAttribute('data-category') === cat) {
+              item.style.display = 'flex';
+              if(item.classList.contains('md:col-span-2')) item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+          
+          // Re-fade in matching items beautifully
+          gsap.to(document.querySelectorAll('.menu-item[style*="display: flex"]'), {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: 'power2.out'
+          });
+          
+          ScrollTrigger.refresh();
+        }
+      });
+    }
+
+    // DISH SEARCH FILTER ENGINE
+    document.getElementById('menu-search').addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const items = document.querySelectorAll('.menu-item');
+
+      items.forEach(item => {
+        const title = item.querySelector('.name-target').textContent.toLowerCase();
+        const desc = item.querySelector('p').textContent.toLowerCase();
+
+        if (title.includes(query) || desc.includes(query)) {
+          item.style.display = 'flex';
+          item.style.opacity = '1';
+          item.style.transform = 'translateY(0)';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      ScrollTrigger.refresh();
+    });
+  </script>
+</body>
+</html>
