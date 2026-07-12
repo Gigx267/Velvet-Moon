@@ -1,90 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-  <title>Velvet Moon – Lounge & Dining</title>
-  <!-- Tailwind CSS CDN (lightweight) -->
+  <title>Velvet Moon — Lounge & Dining</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <!-- FontAwesome -->
+  <!-- FontAwesome for precise iconography -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Fonts: Syne + Inter -->
+  <!-- Google Fonts: Inter for the crisp, high-end neo-grotesque interface look -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    /* base & custom overrides */
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0A0A0A;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #030303;
+      letter-spacing: -0.011em;
     }
-    .heading-font {
-      font-family: 'Syne', sans-serif;
+    
+    /* Apple-style premium deep metal text gradient */
+    .premium-text-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 40%, #B5B5B5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #0A0A0A; }
-    ::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #F5C518; }
 
-    .fade-up {
-      opacity: 0;
-      transform: translateY(18px);
-      animation: fadeUp 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+    /* Champagne Gold text gradient for soft, elegant emphasis */
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 60%, #AA7C11 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 0.6s ease forwards;
+
+    /* Systemic fluid easing transitions */
+    .apple-transition {
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .hover-lift {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .hover-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(245, 197, 24, 0.08);
-    }
-    .gold-glow {
-      transition: all 0.3s ease;
-    }
-    .gold-glow:hover {
-      text-shadow: 0 0 10px rgba(245, 197, 24, 0.3);
-    }
-    .menu-item {
-      transition: all 0.2s ease;
-      border-bottom: 1px solid transparent;
-    }
-    .menu-item:hover {
-      border-bottom-color: rgba(245, 197, 24, 0.2);
-    }
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-    .section-bg {
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" opacity="0.03"><path d="M0 300 L200 100 L400 300 L600 100 L800 300 L800 600 L0 600 Z" fill="%23F5C518"/><circle cx="650" cy="450" r="120" fill="%23F5C518" opacity="0.1"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right bottom;
-      background-size: 400px;
-    }
-    .deco-img {
-      background: radial-gradient(circle at 20% 30%, #1a1a1a, #0A0A0A);
-      border: 1px solid #1f1f1f;
-    }
-    .deco-img::after {
-      content: "✦";
-      font-size: 2rem;
-      color: #F5C518;
-      opacity: 0.2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
-    .bg-glow {
-      background: radial-gradient(ellipse at 70% 20%, rgba(245,197,24,0.04), transparent 70%);
-    }
-    /* video overlay fix */
+
+    /* Hide standard scrollbars for a seamless window canvas */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #030303; }
+    ::-webkit-scrollbar-thumb { background: #1C1C1E; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
     .hero-video {
       position: absolute;
       top: 0;
@@ -94,391 +54,450 @@
       object-fit: cover;
       z-index: 1;
     }
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, #0A0A0A 100%);
-      z-index: 2;
-    }
   </style>
 </head>
-<body class="text-neutral-300 antialiased selection:bg-[#F5C518] selection:text-black bg-[#0A0A0A]">
+<body class="text-[#F5F5F7] antialiased bg-[#030303] selection:bg-[#D4AF37] selection:text-black">
 
-  <!-- HEADER -->
-  <header class="fixed top-0 left-0 w-full z-50 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-neutral-900/70">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between">
-      <a href="#" class="heading-font text-lg md:text-xl tracking-widest text-white font-extrabold uppercase">
-        Velvet <span class="text-[#F5C518]">Moon</span>
+  <!-- GLOBAL NAVIGATION (Floating Glass Capsule Layout) -->
+  <div class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 py-4">
+    <header class="max-w-5xl mx-auto h-14 md:h-16 rounded-full bg-[#09090B]/60 backdrop-blur-2xl border border-white/[0.05] shadow-[0_20px_40px_rgba(0,0,0,0.7)] flex items-center justify-between px-6 sm:px-8 apple-transition">
+      <a href="#" class="text-[14px] font-bold tracking-widest uppercase text-white flex items-center gap-1.5 group">
+        <span>Velvet <span class="text-[#D4AF37]">Moon</span></span>
       </a>
-      <nav class="hidden md:flex items-center space-x-6 text-xs font-medium tracking-wider uppercase">
-        <a href="#menu" class="hover:text-[#F5C518] transition-colors duration-300">Menu</a>
-        <a href="#about" class="hover:text-[#F5C518] transition-colors duration-300">About</a>
-        <a href="#contact" class="hover:text-[#F5C518] transition-colors duration-300">Find Us</a>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-[11px] font-medium text-[#86868B] uppercase tracking-wider">
+        <a href="#menu" class="hover:text-white hover:scale-105 apple-transition">Menu</a>
+        <a href="#about" class="hover:text-white hover:scale-105 apple-transition">Philosophy</a>
+        <a href="#contact" class="hover:text-white hover:scale-105 apple-transition">Find Us</a>
       </nav>
-      <a href="https://wa.me/2347045524637" target="_blank" class="bg-[#F5C518] text-black text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-none hover:bg-white transition-all duration-300 shadow-lg shadow-[#F5C518]/10 flex items-center gap-1.5">
-        <i class="fa-brands fa-whatsapp text-sm"></i> Reserve
-      </a>
-    </div>
-  </header>
 
-  <!-- HERO with video background -->
-  <section class="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden">
+      <a href="https://wa.me/2347045524637" target="_blank" class="bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[11px] font-semibold uppercase tracking-widest px-4 py-2 rounded-full hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:scale-[1.02] active:scale-[0.98] apple-transition flex items-center gap-2">
+        <i class="fa-brands fa-whatsapp text-xs"></i> Reserve
+      </a>
+    </header>
+  </div>
+
+  <!-- HERO SECTION (Cinematic Scale Overlaid Canopy) -->
+  <section class="relative h-screen flex items-center justify-start overflow-hidden px-6 sm:px-12">
     <video class="hero-video" autoplay muted loop playsinline poster="./p (2).png">
       <source src="v.mp4" type="video/mp4">
     </video>
-    <div class="hero-overlay"></div>
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full">
-      <div class="max-w-3xl pt-24 md:pt-32">
-        <h1 class="heading-font text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
-          Velvet Moon <br class="sm:hidden"><span class="text-[#F5C518]">Lounge & Fine Dining</span>
+    
+    <!-- Sophisticated Multi-Layer Light Control Vignette -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#030303] via-[#030303]/40 to-transparent z-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/50 z-20"></div>
+    
+    <!-- Discrete Golden Core Glow (Simulating moonlight) -->
+    <div class="absolute top-1/4 right-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none z-10"></div>
+    
+    <div class="relative z-30 max-w-5xl mx-auto w-full pt-16">
+      <div class="max-w-2xl space-y-2">
+        <span class="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.3em] block mb-2">Abuja’s Premium Lounge Experience</span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.08] premium-text-gradient">
+          Nocturnal refinement, <br><span class="gold-text-gradient">poured with precision.</span>
         </h1>
-        <p class="text-base md:text-lg text-neutral-300/80 mt-4 max-w-xl font-light leading-relaxed">
-          Immerse yourself in a nocturnal symphony of culinary refinement, where sophisticated interior curation sets the stage for an unforgettable epicurean journey.
+        <p class="text-[16px] sm:text-[19px] text-[#86868B] pt-4 font-normal leading-relaxed max-w-xl">
+          An intentional intersection of minimalist interior curation and unapologetic culinary artistry.
         </p>
-        <div class="flex flex-wrap gap-4 mt-8">
-          <a href="#menu" class="bg-white text-black font-semibold text-sm px-8 py-3 rounded-full hover:bg-[#F5C518] transition-all duration-300">View Menus</a>
-          <a href="#contact" class="border border-white/30 text-white text-sm px-8 py-3 rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300">Reserve a Table</a>
+        <div class="flex items-center gap-6 pt-8">
+          <a href="#menu" class="bg-white text-black font-medium text-[13px] uppercase tracking-wider px-6 py-3 rounded-full hover:bg-[#D4AF37] hover:text-black apple-transition shadow-lg">
+            Explore Menu
+          </a>
+          <a href="#contact" class="text-white hover:text-[#D4AF37] text-[13px] font-medium uppercase tracking-wider inline-flex items-center gap-1.5 group apple-transition">
+            Locate Residence <i class="fa-solid fa-chevron-right text-[9px] opacity-70 group-hover:translate-x-1 apple-transition"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT / ASYMMETRIC LIGHT BLOCK (high contrast) -->
-  <section id="about" class="py-16 md:py-24 bg-white text-black">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <!-- asymmetric image group -->
-        <div class="flex flex-col sm:flex-row gap-4">
-          <div class="w-full sm:w-1/2">
-            <img src="./p (2).png" alt="Culinary Expression One" class="w-full h-64 md:h-80 object-cover rounded-sm shadow-xl">
+  <!-- PHILOSOPHY / ASYMMETRIC CONTENT CANVAS -->
+  <section id="about" class="py-24 md:py-36 bg-[#09090B] border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-center">
+        
+        <!-- Apple Asymmetric Editorial Layout -->
+        <div class="md:col-span-7 grid grid-cols-12 gap-4">
+          <div class="col-span-7 pt-12">
+            <div class="relative group overflow-hidden rounded-2xl border border-white/[0.05]">
+              <img src="./p (2).png" alt="Culinary Presentation" class="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105 shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 apple-transition"></div>
+            </div>
           </div>
-          <div class="w-full sm:w-1/2 mt-0 sm:-mt-8">
-            <img src="./c.jpg" alt="Culinary Expression Two" class="w-full h-64 md:h-80 object-cover rounded-sm shadow-xl">
+          <div class="col-span-5">
+            <div class="relative group overflow-hidden rounded-2xl border border-white/[0.05]">
+              <img src="./c.jpg" alt="Ambiance Curation" class="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105 shadow-2xl">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 apple-transition"></div>
+            </div>
           </div>
         </div>
-        <div>
-          <span class="text-[#E65F2B] text-xs font-bold uppercase tracking-widest block mb-2">● designed & crafted</span>
-          <h2 class="heading-font text-3xl md:text-4xl font-bold leading-tight">For Discerning Tastes</h2>
-          <p class="text-neutral-700 text-sm md:text-base leading-relaxed mt-4">
-            Our seasonal presentation merges technical kitchen expertise with geometric plate art. Enjoy texture contrasts and rich components balanced perfectly to preserve individual ingredient integrity.
+
+        <div class="md:col-span-5 space-y-6">
+          <p class="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.25em]">Curation & Geometry</p>
+          <h2 class="text-3xl font-bold tracking-tight text-white leading-tight">For Discerning Tastes.</h2>
+          <p class="text-[#A1A1A6] text-[14px] sm:text-[15px] leading-relaxed font-light">
+            Our presentation balances pristine structural layout with intense contrasting textures. Every choice is deliberate, protecting item clarity without unnecessary modification.
           </p>
-          <p class="text-neutral-500 text-sm mt-2">Every dish pairs cleanly with our signature wine library selection and continuous mixology offerings.</p>
+          <div class="h-[1px] w-12 bg-[#2C2C2E]"></div>
+          <p class="text-[#86868B] text-[13px] font-light leading-relaxed">
+            Paired flawlessly with our continuous custom mixology program and highly selective temperature-controlled vault cellar.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MENU SECTION (fully integrated from second part) -->
-  <main id="menu" class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 border-t border-neutral-950 section-bg bg-glow">
-    <div class="mb-12 text-center md:text-left fade-up">
-      <span class="text-xs font-bold tracking-widest text-[#F5C518] uppercase block mb-1">// Curated Menu</span>
-      <h2 class="heading-font text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tight">The Food Collection</h2>
-      <p class="text-neutral-500 text-xs mt-2 italic">Prices are exclusive of VAT and service charge</p>
-    </div>
-
-    <div class="w-full h-20 md:h-28 deco-img rounded-none mb-12 flex items-center justify-center text-[#F5C518]/20 text-sm tracking-widest uppercase">
-      <span class="bg-neutral-900/40 px-4 py-1.5 text-[10px]">✦ signature ingredients ✦</span>
-    </div>
-
-    <div class="space-y-20 qr-optimized">
-      <!-- Appetizers -->
-      <div class="fade-in" style="animation-delay: 0.1s;">
-        <h3 class="heading-font text-lg text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-3 mb-6 flex items-center justify-between">
-          <span>Appetizers</span>
-          <span class="text-xs text-neutral-600 lowercase font-normal">To begin</span>
-        </h3>
-        <div class="grid md:grid-cols-2 gap-x-8 gap-y-6">
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Buffalo Chicken Wings</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Crispy wings tossed in rich buffalo sauce with butter and spices.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦8,500</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Steak Bites</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Tender diced beef sautéed with garlic, herbs, and black pepper glaze.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦9,500</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Spring Rolls</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Crispy rolls filled with seasoned chicken, fresh veg or prawns, sweet chili dip.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦5,000</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Peppered Gizzard</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Sautéed gizzard cooked in spicy pepper sauce with onions and bell peppers.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦8,000</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Suya Chicken Skewers</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Grilled chicken skewers coated in suya spice, served with sliced onions.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦9,000</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Chili Garlic Calamari</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Lightly fried calamari tossed in spicy chili garlic sauce.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦11,500</span>
-          </div>
-        </div>
+  <!-- MENU ARCHITECTURE -->
+  <main id="menu" class="bg-[#030303] py-24 md:py-36 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-20 md:mb-28 max-w-xl">
+        <p class="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.25em] mb-2">The Directory</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-white">Curated Gastronomy</h2>
+        <p class="text-[#86868B] text-[13px] mt-3 font-light">Pricing accommodates native configuration. VAT and structural logistics parameters apply at point of receipt.</p>
       </div>
 
-      <!-- Nigerian Heritage -->
-      <div class="fade-in" style="animation-delay: 0.2s;">
-        <h3 class="heading-font text-lg text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-3 mb-6 flex items-center justify-between">
-          <span>Nigerian Heritage</span>
-          <span class="text-xs text-[#F5C518] tracking-widest uppercase font-bold">Signature</span>
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-start group md:col-span-2 bg-neutral-950 border border-[#F5C518]/20 p-5 rounded-none relative overflow-hidden hover-lift">
-            <div class="absolute top-0 right-0 bg-[#F5C518] text-black text-[10px] font-bold tracking-widest uppercase px-3 py-1">Signature</div>
-            <div class="space-y-1 max-w-[78%]">
-              <h4 class="text-white text-base md:text-lg font-bold group-hover:text-[#F5C518] transition-colors">Velvet Moon Snail Jollof</h4>
-              <p class="text-xs text-neutral-400 leading-relaxed">Tender snails cooked in rich, premium spicy sauce, nested with luxury jollof rice and sweet fried plantain.</p>
-            </div>
-            <span class="heading-font font-black text-base text-[#F5C518] mt-1">₦23,500</span>
+      <!-- Structural Content Pipeline -->
+      <div class="space-y-24">
+        
+        <!-- Category: Appetizers -->
+        <div class="space-y-8">
+          <div class="border-b border-white/[0.08] pb-3 flex justify-between items-baseline">
+            <h3 class="text-[16px] font-semibold text-white uppercase tracking-wider">Appetizers</h3>
+            <span class="text-[12px] text-[#86868B] font-light">01 / Baseline</span>
           </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Fried Chicken & Rice</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Crispy fried chicken with local spices, rich jollof or fried rice, plantain.</p>
+          <div class="grid md:grid-cols-2 gap-x-16 gap-y-10">
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Buffalo Chicken Wings</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Crispy cuts tossed in emulsion of mature cayenne, churned butter, and root spices.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦8,500</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦16,000</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Beef Stew & Rice</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Rich tomato-based beef stew, slow-cooked with fresh peppers and spices, served with rice.</p>
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Steak Bites</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Flash-seared beef tenderloin dice, deglazed with cracked black pepper glaze and wild garlic aromatics.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦9,500</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦16,500</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Grilled Croaker Fish</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Whole croaker flame-grilled with coastal herbs, served with chips or fried yam.</p>
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Spring Rolls</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Delicate crisp wrapper options filled with pulled chicken, fresh farm greens, or prawns.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦5,000</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦17,500</span>
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Peppered Gizzard</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Slow-braised gizzard crisp-finished in dense habanero reduction and sweet native onion discs.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦8,000</span>
+            </div>
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Suya Chicken Skewers</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Charcoal-kissed organic breast skewers, pressed with traditional peanut-ground capsicum dry rub.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦9,000</span>
+            </div>
+            <!-- Item -->
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Chili Garlic Calamari</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Lightly dusted coastal squid rings tossed instantly in a configuration of hot garlic oils.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦11,500</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Caribbean & Fusion -->
-      <div class="fade-in" style="animation-delay: 0.3s;">
-        <h3 class="heading-font text-lg text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-3 mb-6 flex items-center justify-between">
-          <span>Caribbean & Fusion</span>
-          <span class="text-xs text-neutral-600 lowercase font-normal">Global palettes</span>
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Jerk Chicken Wings</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Jamaican-style marinated grilled with thyme, allspice, scotch bonnet. Rice & peas.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦14,500</span>
+        <!-- Category: Nigerian Heritage (Featured Layout Block) -->
+        <div class="space-y-8">
+          <div class="border-b border-white/[0.08] pb-3 flex justify-between items-baseline">
+            <h3 class="text-[16px] font-semibold text-white uppercase tracking-wider">Nigerian Heritage</h3>
+            <span class="text-[12px] text-[#86868B] font-light">02 / Core Monoliths</span>
           </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Salmon & Mashed Potatoes</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Herb-seasoned flame-grilled salmon on creamy mashed potatoes & mushy peas.</p>
+          
+          <!-- Apple Featured Luxury Card System -->
+          <div class="bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/15 p-6 md:p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-[#D4AF37]/40 apple-transition shadow-2xl relative overflow-hidden group">
+            <div class="absolute -right-20 -bottom-20 w-60 h-60 bg-[#D4AF37]/2 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="space-y-2 max-w-2xl">
+              <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full">Signature Core</div>
+              <h4 class="text-[19px] md:text-[21px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition">Velvet Moon Snail Jollof</h4>
+              <p class="text-[13px] text-[#A1A1A6] font-light leading-relaxed">
+                Forest snails processed meticulously, slow-stewed in concentrated spicy baseline sauce. Structured gracefully alongside premium grains of smoked Jollof rice and caramelized sweet plantain discs.
+              </p>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦29,500</span>
+            <span class="text-[18px] font-bold text-[#D4AF37] tracking-tight shrink-0">₦23,500</span>
           </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Curry Goat</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Slow-cooked tender goat in Caribbean curry, warm spices. Rice & peas, coleslaw.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦16,500</span>
-          </div>
-        </div>
-      </div>
 
-      <!-- Italian -->
-      <div class="fade-in" style="animation-delay: 0.4s;">
-        <h3 class="heading-font text-lg text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-3 mb-6 flex items-center justify-between">
-          <span>Italian Craft</span>
-          <span class="text-xs text-neutral-600 lowercase font-normal">Pasta & Pizza</span>
-        </h3>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Lasagna</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Layered pasta with ragù, béchamel, and mozzarella baked to perfection.</p>
+          <div class="grid md:grid-cols-2 gap-x-16 gap-y-10 pt-4">
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Fried Chicken & Rice</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Spiced crispy chicken configuration accompanied by a choice of rich wok fried or signature jollof grains.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦16,000</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦26,500</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Marry Me Chicken Pizza</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Crispy crust, creamy parmesan, slow-cooked chicken, sun-dried tomatoes.</p>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Beef Stew & Rice</h4>
+                <p class="text-[13px] text-[#86868b] font-light leading-relaxed">A pristine preparation of aged beef chunks simmered slowly inside a complex tomato-bell pepper fluid base.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦16,500</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦22,000</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Honey Garlic Chicken Alfredo</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Grilled chicken over fettuccine in garlic cream & aged parmesan.</p>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Grilled Croaker Fish</h4>
+                <p class="text-[13px] text-[#86868b] font-light leading-relaxed">Whole selected ocean croaker, open flame-grilled with coastal essence. Served alongside pristine crisp tubers.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦17,500</span>
             </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦19,500</span>
-          </div>
-          <div class="flex justify-between items-start group menu-item pb-2">
-            <div class="space-y-1 max-w-[72%]">
-              <h4 class="text-white font-medium group-hover:text-[#F5C518] transition-colors gold-glow">Spicy Italian Loaded Pizza</h4>
-              <p class="text-xs text-neutral-500 leading-relaxed">Zesty tomato, cured Italian meats, fiery peppers, olives, mozzarella.</p>
-            </div>
-            <span class="heading-font font-bold text-sm text-[#F5C518] bg-neutral-950 px-3 py-1 border border-neutral-900">₦19,500</span>
           </div>
         </div>
-      </div>
 
-      <!-- Burgers -->
-      <div class="fade-in" style="animation-delay: 0.5s;">
-        <h3 class="heading-font text-lg text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-3 mb-6 flex items-center justify-between">
-          <span>Gourmet Burgers</span>
-          <span class="text-xs text-neutral-600 lowercase font-normal">Served with fries</span>
-        </h3>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div class="bg-neutral-950 border border-neutral-900 p-5 space-y-3 group hover:border-[#F5C518]/30 transition-all duration-300 hover-lift">
-            <div class="flex justify-between items-center"><h4 class="text-white font-bold group-hover:text-[#F5C518] transition-colors">Deluxe Beef</h4><span class="text-xs font-bold text-[#F5C518]">₦14,500</span></div>
-            <p class="text-xs text-neutral-500">Smashed beef patty, lettuce, tomato, cheddar, house sauce.</p>
+        <!-- Category: Caribbean & Fusion -->
+        <div class="space-y-8">
+          <div class="border-b border-white/[0.08] pb-3 flex justify-between items-baseline">
+            <h3 class="text-[16px] font-semibold text-white uppercase tracking-wider">Caribbean & Fusion</h3>
+            <span class="text-[12px] text-[#86868B] font-light">03 / Global Integration</span>
           </div>
-          <div class="bg-neutral-950 border border-neutral-900 p-5 space-y-3 group hover:border-[#F5C518]/30 transition-all duration-300 hover-lift">
-            <div class="flex justify-between items-center"><h4 class="text-white font-bold group-hover:text-[#F5C518] transition-colors">Supreme Chicken</h4><span class="text-xs font-bold text-[#F5C518]">₦13,500</span></div>
-            <p class="text-xs text-neutral-500">Crispy chicken breast, lettuce, cheese, signature emulsion.</p>
-          </div>
-          <div class="bg-neutral-950 border border-neutral-900 p-5 space-y-3 group hover:border-[#F5C518]/30 transition-all duration-300 hover-lift">
-            <div class="flex justify-between items-center"><h4 class="text-white font-bold group-hover:text-[#F5C518] transition-colors">Double Cheeseburger</h4><span class="text-xs font-bold text-[#F5C518]">₦17,000</span></div>
-            <p class="text-xs text-neutral-500">Two beef patties, double cheese, pickles, house sauce.</p>
+          <div class="grid md:grid-cols-2 gap-x-16 gap-y-10">
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Jerk Chicken Wings</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Authentic Kingston wet marinade rub, smoked over wood fire with pimento berry hints. Served with traditional rice and peas.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦14,500</span>
+            </div>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Salmon & Mashed Potatoes</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Pan-roasted Atlantic salmon fillet resting over a smooth cloud of heavy-cream whipped potato starch.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦29,500</span>
+            </div>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Curry Goat</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Marrow-in goat chunks slow-rendered inside Jamaican yellow curry fluid with root herbs and cabbage mix.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦16,500</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Sides & Desserts -->
-      <div class="grid md:grid-cols-2 gap-8 fade-in" style="animation-delay: 0.6s;">
-        <div><h3 class="heading-font text-sm text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-2 mb-4">Accompaniments</h3>
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between border-b border-neutral-900/40 pb-1.5"><span class="text-neutral-400">French Fries</span><span class="text-[#F5C518] font-medium">₦5,000</span></div>
-            <div class="flex justify-between border-b border-neutral-900/40 pb-1.5"><span class="text-neutral-400">Yam Chips</span><span class="text-[#F5C518] font-medium">₦4,500</span></div>
-            <div class="flex justify-between border-b border-neutral-900/40 pb-1.5"><span class="text-neutral-400">Sweet Potato Fries</span><span class="text-[#F5C518] font-medium">₦4,400</span></div>
-            <div class="flex justify-between border-b border-neutral-900/40 pb-1.5"><span class="text-neutral-400">Fried Plantain</span><span class="text-[#F5C518] font-medium">₦4,000</span></div>
-            <div class="flex justify-between"><span class="text-neutral-400">Extra Chicken Portion</span><span class="text-[#F5C518] font-medium">₦9,000</span></div>
+        <!-- Category: Italian Craft -->
+        <div class="space-y-8">
+          <div class="border-b border-white/[0.08] pb-3 flex justify-between items-baseline">
+            <h3 class="text-[16px] font-semibold text-white uppercase tracking-wider">Italian Craft</h3>
+            <span class="text-[12px] text-[#86868B] font-light">04 / Flour Composition</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-x-16 gap-y-10">
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Lasagna Emigliana</h4>
+                <p class="text-[13px] text-[#86868B] font-light leading-relaxed">Layered artisan semolina sheets stacked precisely with long-simmered ragù Bolognese and velvety béchamel milk matrix.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦26,500</span>
+            </div>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Marry Me Chicken Pizza</h4>
+                <p class="text-[13px] text-[#86868b] font-light leading-relaxed">Neapolitan style thin base, dressed in aged parmesan cream, slow-pulled capon fowl, and sundried tomato oil.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦22,000</span>
+            </div>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Honey Garlic Chicken Alfredo</h4>
+                <p class="text-[13px] text-[#86868b] font-light leading-relaxed">Flat fettuccine strands tossed dynamic in aged Pecorino emulsion, capped with glazed honey fowl ribbons.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦19,500</span>
+            </div>
+            <div class="flex justify-between items-start group apple-transition">
+              <div class="space-y-1 max-w-[80%]">
+                <h4 class="text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Spicy Italian Loaded Pizza</h4>
+                <p class="text-[13px] text-[#86868b] font-light leading-relaxed">Crushed San Marzano basis topped with artisanal cured meats, hand-torn whole mozzarella, and chili-steeped olives.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white/95 tracking-tight group-hover:text-[#D4AF37] apple-transition">₦19,500</span>
+            </div>
           </div>
         </div>
-        <div><h3 class="heading-font text-sm text-white font-bold tracking-widest uppercase border-b border-neutral-900 pb-2 mb-4">Sweet Endings</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between items-start"><div><h5 class="text-white text-xs font-medium">Chocolate Lava Cake</h5><p class="text-[11px] text-neutral-500">Molten hot fudge center.</p></div><span class="text-xs text-[#F5C518] font-bold">₦7,500</span></div>
-            <div class="flex justify-between items-start"><div><h5 class="text-white text-xs font-medium">Cheesecake Slice</h5><p class="text-[11px] text-neutral-500">Smooth baked cream cheese.</p></div><span class="text-xs text-[#F5C518] font-bold">₦8,000</span></div>
-            <div class="flex justify-between items-start"><div><h5 class="text-white text-xs font-medium">Chocolate Brownie</h5><p class="text-[11px] text-neutral-500">Warm, dense fudgy texture.</p></div><span class="text-xs text-[#F5C518] font-bold">₦6,500</span></div>
+
+        <!-- Category: Gourmet Burgers -->
+        <div class="space-y-8">
+          <div class="border-b border-white/[0.08] pb-3 flex justify-between items-baseline">
+            <h3 class="text-[16px] font-semibold text-white uppercase tracking-wider">Gourmet Burgers</h3>
+            <span class="text-[12px] text-[#86868B] font-light">05 / Ground Selection</span>
+          </div>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="bg-[#09090B] border border-white/[0.04] p-5 rounded-2xl space-y-4 hover:border-[#D4AF37]/20 apple-transition">
+              <div class="flex justify-between items-baseline"><h4 class="text-[14px] font-medium text-white">Deluxe Beef</h4><span class="text-[13px] font-semibold text-[#D4AF37]">₦14,500</span></div>
+              <p class="text-[12px] text-[#86868B] font-light leading-relaxed">Custom coarse-ground chuck patty, premium cheddar leaf, heirloom tomato slice, and clean systemic house emulsion spread.</p>
+            </div>
+            <div class="bg-[#09090B] border border-white/[0.04] p-5 rounded-2xl space-y-4 hover:border-[#D4AF37]/20 apple-transition">
+              <div class="flex justify-between items-baseline"><h4 class="text-[14px] font-medium text-white">Supreme Chicken</h4><span class="text-[13px] font-semibold text-[#D4AF37]">₦13,500</span></div>
+              <p class="text-[12px] text-[#86868B] font-light leading-relaxed">Crisp panko coated organic breast element, molten gouda slice, wild rocket leaves, and balancing lemon-garlic whipped dynamic cream.</p>
+            </div>
+            <div class="bg-[#09090B] border border-white/[0.04] p-5 rounded-2xl space-y-4 hover:border-[#D4AF37]/20 apple-transition">
+              <div class="flex justify-between items-baseline"><h4 class="text-[14px] font-medium text-white">Double Cheeseburger</h4><span class="text-[13px] font-semibold text-[#D4AF37]">₦17,000</span></div>
+              <p class="text-[12px] text-[#86868B] font-light leading-relaxed">Dual smashed premium chuck layers, interconnected with double American curd sheets, barrel pickles, mustard finish.</p>
+            </div>
           </div>
         </div>
+
+        <!-- Category: Accompaniments & Endings Split -->
+        <div class="grid md:grid-cols-12 gap-12 pt-6">
+          <div class="md:col-span-5 space-y-6">
+            <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase border-b border-white/[0.08] pb-2">Accompaniments</h3>
+            <div class="space-y-4 text-[13px] font-light">
+              <div class="flex justify-between"><span class="text-[#A1A1A6]">French Cut Tubers</span><span class="text-white font-medium">₦5,000</span></div>
+              <div class="flex justify-between"><span class="text-[#A1A1A6]">Crisped Yam Strips</span><span class="text-white font-medium">₦4,500</span></div>
+              <div class="flex justify-between"><span class="text-[#A1A1A6]">Sweet Tuber Fries</span><span class="text-white font-medium">₦4,400</span></div>
+              <div class="flex justify-between"><span class="text-[#A1A1A6]">Caramelized Plantain</span><span class="text-white font-medium">₦4,000</span></div>
+              <div class="flex justify-between"><span class="text-[#A1A1A6]">Supplemental Fowl Portion</span><span class="text-[#D4AF37] font-medium">₦9,000</span></div>
+            </div>
+          </div>
+          <div class="md:col-span-2 hidden md:block"></div>
+          <div class="md:col-span-5 space-y-6">
+            <h3 class="text-[14px] font-semibold text-white tracking-wider uppercase border-b border-white/[0.08] pb-2">Sweet Endings</h3>
+            <div class="space-y-5">
+              <div class="flex justify-between items-start text-[13px]">
+                <div class="max-w-[75%]"><h5 class="font-medium text-white">Chocolate Lava Cake</h5><p class="text-[12px] text-[#86868B] font-light mt-0.5">Warm cake crust holding deep liquid fudge core.</p></div>
+                <span class="text-white font-medium">₦7,500</span>
+              </div>
+              <div class="flex justify-between items-start text-[13px]">
+                <div class="max-w-[75%]"><h5 class="font-medium text-white">Cheesecake Slice</h5><p class="text-[12px] text-[#86868B] font-light mt-0.5">Cold set cream cheese over buttered graham reduction crumbs.</p></div>
+                <span class="text-white font-medium">₦8,000</span>
+              </div>
+              <div class="flex justify-between items-start text-[13px]">
+                <div class="max-w-[75%]"><h5 class="font-medium text-white">Chocolate Brownie</h5><p class="text-[12px] text-[#86868B] font-light mt-0.5">Dense, warm baked cacao cube with concentrated texture profile.</p></div>
+                <span class="text-white font-medium">₦6,500</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
 
-  <!-- CONTACT / HOURS -->
-  <section id="contact" class="bg-neutral-950 py-16 md:py-24 px-4 border-t border-neutral-900">
-    <div class="max-w-7xl mx-auto">
-      <div class="mb-12 text-center fade-up">
-        <span class="text-xs font-bold tracking-widest text-[#F5C518] uppercase block mb-1">// Lounge Operations</span>
-        <h2 class="heading-font text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tight">Reservations & Location</h2>
+  <!-- BENTO INFORMATION HUB -->
+  <section id="contact" class="bg-[#09090B] py-24 md:py-36 px-6 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-16 max-w-xl">
+        <p class="text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.25em] mb-2">Operations</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">Reservations & Protocol</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 fade-in">
-        <!-- Hours -->
-        <div class="bg-[#0A0A0A] border border-neutral-900 p-6 flex flex-col justify-between space-y-5 hover-lift">
-          <div><div class="w-10 h-10 rounded-none bg-[#F5C518]/10 flex items-center justify-center mb-4"><i class="fa-regular fa-clock text-[#F5C518]"></i></div>
-            <h4 class="heading-font text-base font-bold text-white uppercase tracking-wider mb-3">Opening Hours</h4>
-            <div class="space-y-2 text-xs tracking-wide">
-              <div class="flex justify-between border-b border-neutral-900 pb-1.5"><span class="text-neutral-500">Mon – Tue</span><span class="text-neutral-300 font-medium">12:00 – 22:00</span></div>
-              <div class="flex justify-between border-b border-neutral-900 pb-1.5"><span class="text-[#F5C518] font-bold">Wednesday</span><span class="text-[#F5C518] font-bold">16:00 – 02:00</span></div>
-              <div class="flex justify-between border-b border-neutral-900 pb-1.5"><span class="text-neutral-500">Thursday</span><span class="text-neutral-300 font-medium">12:00 – 00:00</span></div>
-              <div class="flex justify-between"><span class="text-neutral-400 font-semibold">Fri – Sun</span><span class="text-white font-semibold">14:00 – 00:00</span></div>
+      
+      <!-- Apple Bento Grid System Canvas -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Bento Block 1: Operating Metrics -->
+        <div class="bg-[#030303] border border-white/[0.04] p-6 rounded-2xl flex flex-col justify-between space-y-8 hover:border-[#D4AF37]/20 apple-transition shadow-sm">
+          <div class="space-y-4">
+            <h4 class="text-[13px] font-semibold text-white tracking-wider uppercase">Operational Hours</h4>
+            <div class="space-y-2.5 text-[13px] font-light text-[#A1A1A6]">
+              <div class="flex justify-between border-b border-white/[0.03] pb-1.5"><span>Mon – Tue</span><span class="text-white">12:00 – 22:00</span></div>
+              <div class="flex justify-between border-b border-white/[0.03] pb-1.5"><span class="text-[#D4AF37] font-medium">Wednesday (Specialty)</span><span class="text-[#D4AF37] font-medium">16:00 – 02:00</span></div>
+              <div class="flex justify-between border-b border-white/[0.03] pb-1.5"><span>Thursday</span><span class="text-white">12:00 – 00:00</span></div>
+              <div class="flex justify-between"><span>Fri – Sun</span><span class="text-white">14:00 – 00:00</span></div>
             </div>
           </div>
-          <span class="text-[10px] text-neutral-600 block uppercase tracking-widest">*Event hours may vary</span>
+          <span class="text-[11px] text-[#636366] font-light">*Curfew and corporate buyout protocols apply.</span>
         </div>
-        <!-- Booking -->
-        <div class="bg-[#0A0A0A] border border-neutral-900 p-6 flex flex-col justify-between space-y-4 hover-lift">
-          <div><div class="w-10 h-10 rounded-none bg-[#F5C518]/10 flex items-center justify-center mb-4"><i class="fa-regular fa-calendar-check text-[#F5C518]"></i></div>
-            <h4 class="heading-font text-base font-bold text-white uppercase tracking-wider mb-2">Reservations</h4>
-            <p class="text-xs text-neutral-400 leading-relaxed font-light">Birthdays, private mixers, weekend tables. Early concierge placement guarantees premium floor positioning.</p>
+        
+        <!-- Bento Block 2: Placement Request Interface -->
+        <div class="bg-[#030303] border border-white/[0.04] p-6 rounded-2xl flex flex-col justify-between space-y-6 hover:border-[#D4AF37]/20 apple-transition shadow-sm">
+          <div class="space-y-2">
+            <h4 class="text-[13px] font-semibold text-white tracking-wider uppercase">Concierge Request</h4>
+            <p class="text-[13px] text-[#86868B] font-light leading-relaxed">
+              Spatial reservations are mapped continuously across three priority layers: salon dining suites, custom mixology enclaves, or our main lounge footprint.
+            </p>
           </div>
-          <a href="https://wa.me/2347045524637" class="w-full bg-[#F5C518] text-black text-xs font-bold uppercase tracking-widest py-3 block text-center hover:bg-white transition-all duration-300"><i class="fa-brands fa-whatsapp mr-2"></i> Book via WhatsApp</a>
+          <a href="https://wa.me/2347045524637" class="w-full bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[12px] font-semibold uppercase tracking-wider py-3 rounded-xl block text-center hover:shadow-[0_4px_20px_rgba(212,175,55,0.15)] apple-transition">
+             Request Placement
+          </a>
         </div>
-        <!-- Address -->
-        <div class="bg-[#0A0A0A] border border-neutral-900 p-6 flex flex-col justify-between space-y-5 hover-lift">
-          <div><div class="w-10 h-10 rounded-none bg-[#F5C518]/10 flex items-center justify-center mb-4"><i class="fa-solid fa-location-dot text-[#F5C518]"></i></div>
-            <h4 class="heading-font text-base font-bold text-white uppercase tracking-wider mb-2">The Residence</h4>
-            <p class="text-xs text-white font-medium leading-relaxed">Velvet Moon Lounge & Restaurant<br><span class="text-neutral-400 font-light">House 15, 14 Road, Off 2nd Avenue, Gwarinpa, Abuja.</span></p>
+        
+        <!-- Bento Block 3: The Estate Coordinates -->
+        <div class="bg-[#030303] border border-white/[0.04] p-6 rounded-2xl flex flex-col justify-between space-y-6 hover:border-[#D4AF37]/20 apple-transition shadow-sm">
+          <div class="space-y-4">
+            <h4 class="text-[13px] font-semibold text-white tracking-wider uppercase">The Physical Estate</h4>
+            <p class="text-[13px] text-white font-medium leading-relaxed">
+              Velvet Moon Lounge & Restaurant<br>
+              <span class="text-[#86868B] font-light mt-1 block">House 15, 14 Road, Off 2nd Avenue, Gwarinpa, Abuja.</span>
+            </p>
           </div>
-          <div class="border-t border-neutral-900 pt-3 space-y-1"><span class="text-[10px] uppercase text-neutral-500 tracking-wider block">Hotlines</span>
-            <a href="tel:+2347045524637" class="block text-xs hover:text-[#F5C518] transition-colors"><i class="fa-solid fa-phone text-[10px] mr-2 text-neutral-600"></i> +234 704 552 4637</a>
-            <a href="tel:+2348090330503" class="block text-xs hover:text-[#F5C518] transition-colors"><i class="fa-solid fa-phone text-[10px] mr-2 text-neutral-600"></i> +234 809 033 0503</a>
+          <div class="border-t border-white/[0.04] pt-4 space-y-1.5 text-[12px] text-[#86868B] font-light">
+            <a href="tel:+2347045524637" class="block hover:text-[#D4AF37] apple-transition"><i class="fa-solid fa-phone mr-2 text-[10px] text-[#636366]"></i> +234 704 552 4637</a>
+            <a href="tel:+2348090330503" class="block hover:text-[#D4AF37] apple-transition"><i class="fa-solid fa-phone mr-2 text-[10px] text-[#636366]"></i> +234 809 033 0503</a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FOOTER (multi-column) -->
-  <footer class="bg-[#0A0A0A] py-16 px-4 border-t border-neutral-950">
-    <div class="max-w-7xl mx-auto">
-      <div class="heading-font text-2xl md:text-3xl text-center text-white font-medium mb-12 tracking-wide">For A Memorable Evening</div>
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-sm">
-        <div><h5 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Hours</h5>
-          <ul class="space-y-2 text-neutral-500"><li>Dinner: 5pm – 11pm</li><li>Lounge: 4pm – 2am</li><li>Sunday Brunch</li></ul>
+  <!-- REFINED SYSTEMIC FOOTER -->
+  <footer class="bg-[#030303] py-16 px-6 border-t border-white/[0.04]">
+    <div class="max-w-5xl mx-auto">
+      
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-[12px] font-light text-[#86868B] pb-12">
+        <div class="space-y-3">
+          <h5 class="text-white font-medium uppercase tracking-wider text-[11px]">Domain Sections</h5>
+          <ul class="space-y-1.5"><li>Tasting Layout</li><li>The Vault Library</li><li>The Moon Terrace</li><li>Private Buyouts</li></ul>
         </div>
-        <div><h5 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Menus</h5>
-          <ul class="space-y-2 text-neutral-500"><li>Main Tasting</li><li>Wine Portfolio</li><li>The Vault Bar</li></ul>
+        <div class="space-y-3">
+          <h5 class="text-white font-medium uppercase tracking-wider text-[11px]">Architecture</h5>
+          <ul class="space-y-1.5"><li>Interior Design</li><li>Kitchen Flow</li><li>Mixology Rigor</li><li>Careers</li></ul>
         </div>
-        <div><h5 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Events</h5>
-          <ul class="space-y-2 text-neutral-500"><li>Private Salons</li><li>Corporate Galas</li><li>Buyouts</li></ul>
+        <div class="space-y-3">
+          <h5 class="text-white font-medium uppercase tracking-wider text-[11px]">Directives</h5>
+          <ul class="space-y-1.5"><li>Sartorial Dress Code</li><li>Reservation Parameters</li><li>Media Capture Rule</li></ul>
         </div>
-        <div><h5 class="text-white text-xs font-bold uppercase tracking-widest mb-4">About</h5>
-          <ul class="space-y-2 text-neutral-500"><li>Our Team</li><li>Press Room</li><li>Careers</li></ul>
+        <div class="space-y-3">
+          <h5 class="text-white font-medium uppercase tracking-wider text-[11px]">Inquiries</h5>
+          <ul class="space-y-1.5"><li>Press Relations</li><li>Corporate Galas</li><li>Private Logistics</li></ul>
         </div>
-        <div><h5 class="text-white text-xs font-bold uppercase tracking-widest mb-4">Inquiries</h5>
-          <div class="space-y-2">
-            <select class="w-full bg-neutral-900 border border-neutral-800 text-white text-xs p-2 rounded">
-              <option>Select Pax</option><option>2 Guests</option><option>4 Guests</option><option>Private Event</option>
+        
+        <!-- Apple Simple Integrated Filter Component -->
+        <div class="col-span-2 md:col-span-1 space-y-2.5">
+          <h5 class="text-white font-medium uppercase tracking-wider text-[11px]">Quick Allocation</h5>
+          <div class="space-y-1.5">
+            <select class="w-full bg-[#09090B] text-[11px] text-white px-2.5 py-2 rounded border border-white/[0.05] focus:outline-none">
+              <option>Size: 2 Guests</option>
+              <option>Size: 4 Guests</option>
+              <option>Size: Salon Suite</option>
             </select>
-            <select class="w-full bg-neutral-900 border border-neutral-800 text-white text-xs p-2 rounded">
-              <option>Select Preferred Time</option><option>6:30 PM</option><option>8:30 PM</option><option>10:00 PM</option>
-            </select>
-            <button class="w-full bg-white text-black font-semibold text-xs py-2 hover:bg-[#F5C518] transition-colors">Check Space</button>
+            <button class="w-full bg-[#1C1C1E] hover:bg-[#D4AF37] hover:text-black text-white font-medium text-[11px] py-1.5 rounded-lg uppercase tracking-wider apple-transition">
+              Verify
+            </button>
           </div>
         </div>
       </div>
-      <div class="flex flex-col sm:flex-row justify-between items-center mt-12 pt-6 border-t border-neutral-900 text-neutral-600 text-[10px]">
-        <p>&copy; 2026 Velvet Moon. Redesigned Premium Architecture.</p>
-        <p>Privacy Policy &bull; Terms of Service</p>
+      
+      <!-- Sub-Footer Identity Line -->
+      <div class="flex flex-col sm:flex-row justify-between items-center pt-8 border-t border-white/[0.03] text-[#636366] text-[11px] font-light gap-4">
+        <p>&copy; 2026 Velvet Moon Collective. Engineered cleanly under interface system ergonomics.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-white apple-transition">Privacy Charter</a>
+          <span>&bull;</span>
+          <a href="#" class="hover:text-white apple-transition">Service Terms</a>
+        </div>
       </div>
+      
     </div>
   </footer>
 
-  <!-- smooth anchor scroll -->
-  <script>
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === "#") return;
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-  </script>
 </body>
 </html>
