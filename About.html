@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Velvet Moon — Lounge & Restaurant</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- FontAwesome for precise iconography -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Inter for clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP & Lenis Smooth Scroll Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #030303;
+      overflow-x: hidden;
+    }
+    
+    /* Smooth Scroll integration anchor */
+    html.lenis {
+      height: auto;
+    }
+    .lenis-smooth {
+      scroll-behavior: auto !important;
+    }
+    .lenis-smooth [data-lenis-prevent] {
+      overflow: auto;
+    }
+
+    .premium-text-gradient {
+      background: linear-gradient(180deg, #FFFFFF 0%, #EAEAEA 50%, #B5B5B5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 60%, #AA7C11 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .apple-transition {
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Seamless video positioning */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Initial hidden state for elegant GSAP Fade-In */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body class="text-[#F5F5F7] antialiased bg-[#030303] selection:bg-[#D4AF37] selection:text-black">
+
+  <!-- BACKGROUND MUSIC CONTROLLER -->
+  <audio id="bgMusic" loop>
+      <source src="mm.mp3" type="audio/mpeg">
+      <source src="mmm.mp3" type="audio/ogg">
+  </audio>
+
+  <!-- FLOATING NAVIGATION (Mobile-Optimized Glass Capsule) -->
+  <div id="main-nav" class="fixed top-0 left-0 w-full z-50 px-3 sm:px-6 py-3 transform -translate-y-20 opacity-0">
+    <header class="max-w-5xl mx-auto h-14 rounded-full bg-[#09090B]/70 backdrop-blur-xl border border-white/[0.06] shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex items-center justify-between px-4 sm:px-8 apple-transition">
+      <a href="#" class="text-[13px] sm:text-[14px] font-bold tracking-widest uppercase text-white">
+        Velvet <span class="text-[#D4AF37]">Moon</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center space-x-8 text-[11px] font-medium text-[#86868B] uppercase tracking-wider">
+        <a href="#menu" class="hover:text-white apple-transition">Our Menu</a>
+        <a href="#about" class="hover:text-white apple-transition">Our Story</a>
+        <a href="#contact" class="hover:text-white apple-transition">Find Us</a>
+      </nav>
+
+      <a href="https://wa.me/2347045524637" target="_blank" class="bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3.5 sm:px-5 py-2 rounded-full hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-[1.02] active:scale-[0.98] apple-transition flex items-center gap-1.5">
+        <i class="fa-brands fa-whatsapp text-xs"></i> Book a Table
+      </a>
+    </header>
+  </div>
+
+  <!-- HERO SECTION (High-End Cinematic Entrance with Parallax Effect) -->
+  <section id="hero-section" class="relative h-screen flex items-center justify-start overflow-hidden px-4 sm:px-8 lg:px-12">
+    <div class="absolute inset-0 z-1" id="hero-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline poster="./p (2).png">
+        <source src="v.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <!-- Sophisticated Lighting Overlays -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#030303] via-[#030303]/50 to-transparent z-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/60 z-20"></div>
+    <div class="absolute top-1/4 right-1/4 w-72 h-72 bg-[#D4AF37]/5 rounded-full blur-[100px] pointer-events-none z-10"></div>
+    
+    <div class="relative z-30 max-w-5xl mx-auto w-full pt-12">
+      <div class="max-w-2xl space-y-4">
+        <span id="hero-tag" class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.25em] block opacity-0 transform translateY-4">Abuja’s Premium Lounge Experience</span>
+        <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15] sm:leading-[1.08] premium-text-gradient opacity-0 transform translateY-4">
+          Fine dining, <br class="hidden sm:block"><span class="gold-text-gradient">perfectly served.</span>
+        </h1>
+        <p id="hero-desc" class="text-[14px] sm:text-[18px] text-[#86868B] pt-2 font-normal leading-relaxed max-w-lg opacity-0 transform translateY-4">
+          Experience an unforgettable night out with beautiful interiors, premium drinks, and delicious food.
+        </p>
+        <div id="hero-btns" class="flex items-center gap-4 sm:gap-6 pt-6 opacity-0 transform translateY-4">
+          <a href="#menu" class="bg-white text-black font-semibold text-[12px] uppercase tracking-wider px-5 py-3 rounded-full hover:bg-[#D4AF37] hover:text-black apple-transition shadow-lg">
+            View Menu
+          </a>
+          <a href="#contact" class="text-white hover:text-[#D4AF37] text-[12px] font-semibold uppercase tracking-wider inline-flex items-center gap-1.5 group apple-transition">
+            Our Location <i class="fa-solid fa-chevron-right text-[8px] opacity-70 group-hover:translate-x-1 apple-transition"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY / AMBIANCE SECTION -->
+  <section id="about" class="py-16 sm:py-28 bg-[#09090B] border-t border-white/[0.03] overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+        
+        <!-- Images Portfolio Area -->
+        <div class="hidden sm:grid md:col-span-7 grid-cols-12 gap-4 visual-trigger">
+          <div class="col-span-7 pt-8 reveal-scale">
+            <div class="rounded-2xl border border-white/[0.05] overflow-hidden">
+              <img src="./p (2).png" alt="Our Food" class="w-full aspect-[4/5] object-cover shadow-2xl hover:scale-105 apple-transition">
+            </div>
+          </div>
+          <div class="col-span-5 reveal-scale" style="transition-delay: 150ms;">
+            <div class="rounded-2xl border border-white/[0.05] overflow-hidden">
+              <img src="./c.jpg" alt="Our Lounge" class="w-full aspect-[3/4] object-cover shadow-2xl hover:scale-105 apple-transition">
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 space-y-4 sm:space-y-6 text-trigger">
+          <p class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] reveal-item">The Experience</p>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white reveal-item">Made for those who appreciate quality.</h2>
+          <p class="text-[#A1A1A6] text-[14px] leading-relaxed font-light reveal-item">
+            Every dish we prepare balances rich, local flavors with excellent presentation. We use fresh ingredients to make sure your dining experience is nothing short of exceptional.
+          </p>
+          <div class="h-[1px] w-12 bg-[#2C2C2E] reveal-item"></div>
+          <p class="text-[#86868B] text-[13px] font-light leading-relaxed reveal-item">
+            Pair your meals with our carefully selected premium wines and signature cocktails made by expert mixologists.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU ARCHITECTURE -->
+  <main id="menu" class="bg-[#030303] py-16 sm:py-28 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- Section Header -->
+      <div class="mb-12 sm:mb-20 max-w-xl text-trigger">
+        <p class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] mb-1 reveal-item">Menu</p>
+        <h2 class="text-2xl sm:text-4xl font-bold tracking-tight text-white reveal-item">Food & Drinks</h2>
+        <p class="text-[#86868B] text-[13px] mt-2 font-light reveal-item">Prices are exclusive of VAT and standard service charge.</p>
+      </div>
+
+      <!-- Menu Items List -->
+      <div class="space-y-16">
+        
+        <!-- Category: Appetizers -->
+        <div class="space-y-6 menu-group-trigger">
+          <div class="border-b border-white/[0.08] pb-2 flex justify-between items-baseline reveal-item">
+            <h3 class="text-[14px] sm:text-[15px] font-semibold text-white uppercase tracking-wider">Appetizers</h3>
+            <span class="text-[11px] text-[#86868B] font-light">01</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 sm:gap-y-8">
+            <!-- Items -->
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Buffalo Chicken Wings</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy wings tossed in a spicy, buttery hot sauce.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,500</span>
+            </div>
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Steak Bites</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Tender beef cubes seared with garlic and black pepper sauce.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦9,500</span>
+            </div>
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Spring Rolls</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crisp wrappers with your choice of chicken, fresh vegetables, or prawns.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦5,000</span>
+            </div>
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Peppered Gizzard</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Slow-cooked gizzards fried in a spicy pepper and onion sauce.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Nigerian Heritage -->
+        <div class="space-y-6 menu-group-trigger">
+          <div class="border-b border-white/[0.08] pb-2 flex justify-between items-baseline reveal-item">
+            <h3 class="text-[14px] sm:text-[15px] font-semibold text-white uppercase tracking-wider">Nigerian Heritage</h3>
+            <span class="text-[11px] text-[#86868B] font-light">02</span>
+          </div>
+          
+          <!-- Special card with premium hovering scale -->
+          <div class="bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/20 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#D4AF37]/50 hover:-translate-y-1 apple-transition shadow-xl relative overflow-hidden group reveal-item">
+            <div class="space-y-1.5 max-w-2xl">
+              <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">Chef's Special</div>
+              <h4 class="text-[16px] sm:text-[18px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition">Velvet Moon Snail Jollof</h4>
+              <p class="text-[12px] sm:text-[13px] text-[#A1A1A6] font-light leading-snug">
+                Perfectly cleaned snails, slow-cooked in a rich, spicy sauce. Served with smoky firewood Jollof rice and sweet fried plantains.
+              </p>
+            </div>
+            <span class="text-[16px] sm:text-[18px] font-bold text-[#D4AF37] shrink-0">₦23,500</span>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-x-12 gap-y-6 pt-2">
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Fried Chicken & Rice</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy fried chicken served with your choice of fried rice or Jollof rice.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦16,000</span>
+            </div>
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Grilled Croaker Fish</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Whole fresh croaker fish grilled over an open flame, served with golden fried yam or chips.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,500</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category: Italian Craft -->
+        <div class="space-y-6 menu-group-trigger">
+          <div class="border-b border-white/[0.08] pb-2 flex justify-between items-baseline reveal-item">
+            <h3 class="text-[14px] sm:text-[15px] font-semibold text-white uppercase tracking-wider">Italian Craft</h3>
+            <span class="text-[11px] text-[#86868B] font-light">03</span>
+          </div>
+          <div class="grid md:grid-cols-2 gap-x-12 gap-y-6">
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Lasagna Emigliana</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Baked layers of pasta stacked with premium minced meat sauce and creamy white sauce.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦26,500</span>
+            </div>
+            <div class="flex justify-between items-start gap-4 group reveal-item">
+              <div class="space-y-0.5 max-w-[75%]">
+                <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] apple-transition">Marry Me Chicken Pizza</h4>
+                <p class="text-[12px] sm:text-[13px] text-[#86868b] font-light leading-snug">Thin-crust pizza topped with rich parmesan cream, shredded chicken, and sun-dried tomatoes.</p>
+              </div>
+              <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦22,000</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- BENTO LAYOUT INFORMATION HUB -->
+  <section id="contact" class="bg-[#09090B] py-16 sm:py-28 px-4 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto">
+      <div class="mb-10 max-w-xl text-trigger">
+        <p class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] mb-1 reveal-item">Information</p>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white reveal-item">Opening Hours & Location</h2>
+      </div>
+      
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 bento-trigger">
+        
+        <!-- Opening Hours -->
+        <div class="bg-[#030303] border border-white/[0.04] p-5 rounded-2xl flex flex-col justify-between space-y-6 hover:border-[#D4AF37]/30 apple-transition reveal-scale">
+          <div class="space-y-3">
+            <h4 class="text-[12px] font-semibold text-white tracking-wider uppercase">Lounge Hours</h4>
+            <div class="space-y-2 text-[13px] font-light text-[#A1A1A6]">
+              <div class="flex justify-between border-b border-white/[0.02] pb-1"><span>Mon – Tue</span><span class="text-white">12:00 PM – 10:00 PM</span></div>
+              <div class="flex justify-between border-b border-white/[0.02] pb-1"><span class="text-[#D4AF37]">Wednesday</span><span class="text-[#D4AF37]">4:00 PM – 2:00 AM</span></div>
+              <div class="flex justify-between border-b border-white/[0.02] pb-1"><span>Thursday</span><span class="text-white">12:00 PM – Midnight</span></div>
+              <div class="flex justify-between"><span>Fri – Sun</span><span class="text-white">2:00 PM – Midnight</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Table Reservations -->
+        <div class="bg-[#030303] border border-white/[0.04] p-5 rounded-2xl flex flex-col justify-between space-y-5 hover:border-[#D4AF37]/30 apple-transition reveal-scale">
+          <div class="space-y-2">
+            <h4 class="text-[12px] font-semibold text-white tracking-wider uppercase">Reservations</h4>
+            <p class="text-[13px] text-[#86868B] font-light leading-relaxed">
+              We highly recommend booking a table in advance for weekend dining, group parties, or private indoor salon lounge seating.
+            </p>
+          </div>
+          <a href="https://wa.me/2347045524637" class="w-full bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[11px] font-bold uppercase tracking-wider py-3 rounded-xl block text-center hover:shadow-[0_4px_15px_rgba(212,175,55,0.25)] apple-transition">
+             Book on WhatsApp
+          </a>
+        </div>
+        
+        <!-- The Address Coordinates -->
+        <div class="bg-[#030303] border border-white/[0.04] p-5 rounded-2xl flex flex-col justify-between space-y-5 hover:border-[#D4AF37]/30 apple-transition reveal-scale">
+          <div class="space-y-2">
+            <h4 class="text-[12px] font-semibold text-white tracking-wider uppercase">Find Us Here</h4>
+            <p class="text-[13px] text-white font-medium leading-relaxed">
+              Velvet Moon Lounge & Restaurant<br>
+              <span class="text-[#86868B] font-light mt-0.5 block">House 15, 14 Road, Off 2nd Avenue, Gwarinpa, Abuja.</span>
+            </p>
+          </div>
+          <div class="border-t border-white/[0.04] pt-3 space-y-1 text-[12px] text-[#86868B] font-light">
+            <a href="tel:+2347045524637" class="block hover:text-[#D4AF37] apple-transition"><i class="fa-solid fa-phone mr-2 text-[10px]"></i> +234 704 552 4637</a>
+            <a href="tel:+2348090330503" class="block hover:text-[#D4AF37] apple-transition"><i class="fa-solid fa-phone mr-2 text-[10px]"></i> +234 809 033 0503</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#030303] py-8 px-4 sm:px-8 border-t border-white/[0.03]">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[#636366] text-[11px] font-light gap-3 text-center sm:text-left">
+      <p>&copy; 2026 Velvet Moon Collective. Built beautifully for mobile and web screens.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-white apple-transition">Privacy Policy</a>
+        <a href="#" class="hover:text-white apple-transition">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LUXURY CONTROLS AND ANIMATION INTERPRETATION SCRIPT -->
+  <script>
+    // 1. INITIALIZE LENIS SMOOTH SCROLL (Aesthetic Momentum Scrolling)
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    function raf(time) {
+      lenis.tick(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Sync ScrollTrigger with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // 2. GSAP CINEMATIC ENTRANCE & INTERACTIVE PARALLAX SCROLL
+    window.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // --- Hero Loading Timeline ---
+      const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      
+      tl.to('#main-nav', { y: 0, opacity: 1, duration: 1.2 })
+        .to('#hero-tag', { y: 0, opacity: 1, duration: 0.8 }, '-=0.8')
+        .to('#hero-title', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#hero-desc', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#hero-btns', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6');
+
+      // Try Autoplay Background Music safely on user engagement
+      const music = document.getElementById('bgMusic');
+      if(music) {
+        let playPromise = music.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // If browser blocks autoplay, start it on the first click interaction anywhere
+                window.addEventListener('click', () => { music.play(); }, { once: true });
+            });
+        }
+      }
+
+      // --- Cinematic Background Video Parallax ---
+      gsap.to('#hero-video-wrap', {
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      // --- Global Text & Headers Scroll Triggers (Staggered Entrance & Clean Exit) ---
+      gsap.utils.toArray('.text-trigger').forEach(trigger => {
+        gsap.to(trigger.querySelectorAll('.reveal-item'), {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: trigger,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Image Scale In Parallax ---
+      gsap.utils.toArray('.visual-trigger').forEach(trigger => {
+        gsap.to(trigger.querySelectorAll('.reveal-scale'), {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: trigger,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Menu Rows Reveal Loops ---
+      gsap.utils.toArray('.menu-group-trigger').forEach(group => {
+        gsap.to(group.querySelectorAll('.reveal-item'), {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: group,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Bento Grid Layout Transform On Approach ---
+      gsap.to('.bento-trigger .reveal-scale', {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.bento-trigger',
+          start: 'top 85%',
+          end: 'bottom 10%',
+          toggleActions: 'play reverse play reverse'
+        }
+      });
+    });
+  </script>
+</body>
+</html>
