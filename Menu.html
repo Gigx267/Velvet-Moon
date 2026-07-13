@@ -17,7 +17,7 @@
   <!-- GSAP & Lenis Smooth Scroll Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <style>
     body {
@@ -112,6 +112,7 @@
       <!-- Horizontal Tab Capsule Engine -->
       <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar py-1 mask-right">
         <button onclick="filterCategory('all')" class="category-btn active px-4 py-1.5 rounded-full border border-[#D4AF37] text-xs font-medium uppercase tracking-wider text-black bg-[#D4AF37] shrink-0 apple-transition">All</button>
+        <button onclick="filterCategory('platters')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Sharing Platters</button>
         <button onclick="filterCategory('appetizers')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Appetizers</button>
         <button onclick="filterCategory('heritage')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Nigerian Heritage</button>
         <button onclick="filterCategory('italian')" class="category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition">Italian Craft</button>
@@ -125,6 +126,49 @@
   <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-28">
     <div id="menu-grid" class="grid md:grid-cols-2 gap-x-12 gap-y-10 items-start">
       
+      <!-- ================= SHARING PLATTERS ================= -->
+      <!-- ITEM: SEAFOOD PLATTER -->
+      <div class="menu-item md:col-span-2 bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/20 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#D4AF37]/40 shadow-xl group reveal-item" data-category="platters">
+        <div class="space-y-1.5 max-w-2xl">
+          <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">Feeds 6 People</div>
+          <h4 class="text-[16px] sm:text-[18px] font-semibold text-white group-hover:text-[#D4AF37] name-target apple-transition">Seafood Platter</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#A1A1A6] font-light leading-snug">Premium ocean selection featuring Grilled prawns, Salmon, Calamari, Fried shrimp, served with fries, garlic butter sauce, and lemon wedges.</p>
+        </div>
+        <span class="text-[16px] sm:text-[18px] font-bold text-[#D4AF37] shrink-0">₦120,000</span>
+      </div>
+
+      <!-- ITEM: GRILLED PLATTER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
+        <div class="space-y-1 max-w-[75%]">
+          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Grilled Platter</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Grilled chicken, chicken wings, french fries, plantain, coleslaw, and rich dipping sauces.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦88,000</span>
+      </div>
+
+      <!-- ITEM: NIGERIAN GRILL PLATTER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
+        <div class="space-y-1 max-w-[75%]">
+          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Nigerian Grill Platter</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Smoky Asun rice, gizzard, grilled chicken, roasted plantain, golden yam fries, and signature spicy pepper sauce.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦88,000</span>
+      </div>
+
+      <!-- ITEM: SIGNATURE SHARING PLATTER -->
+      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
+        <div class="space-y-1 max-w-[75%]">
+          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
+          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Signature Sharing Platter</h4>
+          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy chicken wings, golden spring rolls, savory samosas, onion rings, and fries served with three distinct dipping sauces.</p>
+        </div>
+        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦60,000</span>
+      </div>
+
+
+      <!-- ================= STANDARD MENU ================= -->
       <!-- ITEM: APPETIZER -->
       <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
         <div class="space-y-1 max-w-[75%]">
@@ -337,3 +381,4 @@
   </script>
 </body>
 </html>
+
