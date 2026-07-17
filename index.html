@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>The Menu — Velvet Moon Lounge & Restaurant</title>
+  <title>Velvet Moon — Lounge & Restaurant</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -17,7 +18,7 @@
   <!-- GSAP & Lenis Smooth Scroll Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
 
   <style>
     body {
@@ -26,11 +27,15 @@
       overflow-x: hidden;
     }
     
+    /* Smooth Scroll integration anchor */
     html.lenis {
       height: auto;
     }
     .lenis-smooth {
       scroll-behavior: auto !important;
+    }
+    .lenis-smooth [data-lenis-prevent] {
+      overflow: auto;
     }
 
     .premium-text-gradient {
@@ -46,64 +51,127 @@
     }
 
     .apple-transition {
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Seamless video positioning */
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    /* Initial hidden state for elegant GSAP Fade-In */
     .reveal-item {
       opacity: 0;
-      transform: translateY(25px);
+      transform: translateY(30px);
     }
-
-    /* Custom scrollbar for premium menu categories container */
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body class="text-[#F5F5F7] antialiased bg-[#030303] selection:bg-[#D4AF37] selection:text-black">
 
-  <!-- FLOATING NAVIGATION -->
+  <!-- BACKGROUND MUSIC CONTROLLER -->
+  <audio id="bgMusic" loop>
+      <source src="mm.mp3" type="audio/mpeg">
+      <source src="mmm.mp3" type="audio/ogg">
+  </audio>
+
+  <!-- FLOATING NAVIGATION (Mobile-Optimized Glass Capsule) -->
   <div id="main-nav" class="fixed top-0 left-0 w-full z-50 px-3 sm:px-6 py-3 transform -translate-y-20 opacity-0">
     <header class="max-w-5xl mx-auto h-14 rounded-full bg-[#09090B]/70 backdrop-blur-xl border border-white/[0.06] shadow-[0_15px_35px_rgba(0,0,0,0.6)] flex items-center justify-between px-4 sm:px-8 apple-transition">
-      <a href="index.html" class="text-[13px] sm:text-[14px] font-bold tracking-widest uppercase text-white">
+      <a href="#" class="text-[13px] sm:text-[14px] font-bold tracking-widest uppercase text-white">
         Velvet <span class="text-[#D4AF37]">Moon</span>
       </a>
       
-      <nav class="hidden md:flex items-center space-x-8 text-[11px] font-medium text-[#86868B] uppercase tracking-wider">
-        <a href="#" class="text-white tracking-wide">Our Menu</a>
-        <a href="story.html" class="hover:text-white apple-transition">Our Story</a>
-        <a href="index.html#contact" class="hover:text-white apple-transition">Find Us</a>
+      <nav class="hidden md:flex items-center space-x-8 text-[11px] font-medium text-[#86868B] uppercaase tracking-wider">
+        <a href="Menu.html" class="hover:text-white apple-transition">Our Menu</a>
+        <a href="About.html" class="hover:text-white apple-transition">Our Story</a>
+        <a href="Contact.html" class="hover:text-white apple-transition">Find Us</a>
       </nav>
 
-      <a href="https://wa.me/2347045524637" target="_blank" class="bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3.5 sm:px-5 py-2 rounded-full hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-[1.02] apple-transition flex items-center gap-1.5">
+      <a href="https://wa.me/2347045524637" target="_blank" class="bg-gradient-to-r from-[#F3E5AB] via-[#D4AF37] to-[#AA7C11] text-black text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3.5 sm:px-5 py-2 rounded-full hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:scale-[1.02] active:scale-[0.98] apple-transition flex items-center gap-1.5">
         <i class="fa-brands fa-whatsapp text-xs"></i> Book a Table
       </a>
     </header>
   </div>
 
-  <!-- HERO TITLE ARCHITECTURE -->
-  <section class="pt-32 pb-12 px-4 relative overflow-hidden">
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="max-w-5xl mx-auto text-center space-y-4">
-      <span id="menu-tag" class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.3em] block opacity-0 transform translate-y-4">The Culinary Collection</span>
-      <h1 id="menu-title" class="text-4xl sm:text-6xl font-bold tracking-tight text-white premium-text-gradient opacity-0 transform translate-y-4">
-        Food & <span class="gold-text-gradient">Elixirs.</span>
-      </h1>
-      <p id="menu-desc" class="text-[13px] sm:text-[14px] text-[#86868B] font-light max-w-lg mx-auto opacity-0 transform translate-y-4">
-        Exquisite ingredients meticulously gathered and combined. Prices are exclusive of VAT and standard service charge.
-      </p>
+  <!-- HERO SECTION (High-End Cinematic Entrance with Parallax Effect) -->
+  <section id="hero-section" class="relative h-screen flex items-center justify-start overflow-hidden px-4 sm:px-8 lg:px-12">
+    <div class="absolute inset-0 z-1" id="hero-video-wrap">
+      <video class="hero-video" autoplay muted loop playsinline poster="./p (2).png">
+        <source src="v.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <!-- Sophisticated Lighting Overlays -->
+    <div class="absolute inset-0 bg-gradient-to-r from-[#030303] via-[#030303]/50 to-transparent z-20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/60 z-20"></div>
+    <div class="absolute top-1/4 right-1/4 w-72 h-72 bg-[#D4AF37]/5 rounded-full blur-[100px] pointer-events-none z-10"></div>
+    
+    <div class="relative z-30 max-w-5xl mx-auto w-full pt-12">
+      <div class="max-w-2xl space-y-4">
+        <span id="hero-tag" class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.25em] block opacity-0 transform translateY-4">Abuja’s Premium Lounge Experience</span>
+        <h1 id="hero-title" class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.15] sm:leading-[1.08] premium-text-gradient opacity-0 transform translateY-4">
+          Fine dining, <br class="hidden sm:block"><span class="gold-text-gradient">perfectly served.</span>
+        </h1>
+        <p id="hero-desc" class="text-[14px] sm:text-[18px] text-[#86868B] pt-2 font-normal leading-relaxed max-w-lg opacity-0 transform translateY-4">
+          Experience an unforgettable night out with beautiful interiors, premium drinks, and delicious food.
+        </p>
+        <div id="hero-btns" class="flex items-center gap-4 sm:gap-6 pt-6 opacity-0 transform translateY-4">
+          <a href="Menu.html" class="bg-white text-black font-semibold text-[12px] uppercase tracking-wider px-5 py-3 rounded-full hover:bg-[#D4AF37] hover:text-black apple-transition shadow-lg">
+            View Menu
+          </a>
+          <a href="Contact.html" class="text-white hover:text-[#D4AF37] text-[12px] font-semibold uppercase tracking-wider inline-flex items-center gap-1.5 group apple-transition">
+            Our Location <i class="fa-solid fa-chevron-right text-[8px] opacity-70 group-hover:translate-x-1 apple-transition"></i>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- SEARCH & CATEGORY FILTER STICKY BAR -->
-  <section id="menu-controls" class="sticky top-20 z-40 px-4 mb-12 opacity-0 transform translate-y-4">
-    <div class="max-w-4xl mx-auto space-y-4">
-      
-      <!-- Interactive Luxury Search Input -->
+  <!-- STORY / AMBIANCE SECTION -->
+  <section id="about" class="py-16 sm:py-28 bg-[#09090B] border-t border-white/[0.03] overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-12 gap-10 md:gap-16 items-center">
+        
+        <!-- Images Portfolio Area -->
+        <div class="hidden sm:grid md:col-span-7 grid-cols-12 gap-4 visual-trigger">
+          <div class="col-span-7 pt-8 reveal-scale">
+            <div class="rounded-2xl border border-white/[0.05] overflow-hidden">
+              <img src="./p (2).png" alt="Our Food" class="w-full aspect-[4/5] object-cover shadow-2xl hover:scale-105 apple-transition">
+            </div>
+          </div>
+          <div class="col-span-5 reveal-scale" style="transition-delay: 150ms;">
+            <div class="rounded-2xl border border-white/[0.05] overflow-hidden">
+              <img src="./c.jpg" alt="Our Lounge" class="w-full aspect-[3/4] object-cover shadow-2xl hover:scale-105 apple-transition">
+            </div>
+          </div>
+        </div>
+
+        <div class="md:col-span-5 space-y-4 sm:space-y-6 text-trigger">
+          <p class="text-[10px] sm:text-[11px] font-bold text-[#D4AF37] uppercase tracking-[0.2em] reveal-item">The Experience</p>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white reveal-item">Made for those who appreciate quality.</h2>
+          <p class="text-[#A1A1A6] text-[14px] leading-relaxed font-light reveal-item">
+            Every dish we prepare balances rich, local flavors with excellent presentation. We use fresh ingredients to make sure your dining experience is nothing short of exceptional.
+          </p>
+          <div class="h-[1px] w-12 bg-[#2C2C2E] reveal-item"></div>
+          <p class="text-[#86868B] text-[13px] font-light leading-relaxed reveal-item">
+            Pair your meals with our carefully selected premium wines and signature cocktails made by expert mixologists.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Interactive Luxury Search Input -->
       <div class="relative max-w-md mx-auto">
         <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-xs text-[#636366]"></i>
         <input type="text" id="menu-search" placeholder="Search dish or flavor notes..." class="w-full bg-[#09090B] border border-white/[0.06] rounded-full pl-10 pr-4 py-2.5 text-[13px] text-white focus:outline-none focus:border-[#D4AF37]/40 placeholder-[#636366] apple-transition">
@@ -125,601 +193,143 @@
     </div>
   </section>
 
-  <!-- GRID COMPILATION WRAPPER -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 pb-28">
-    <div id="menu-grid" class="grid md:grid-cols-2 gap-x-12 gap-y-10 items-start">
-      
-      <!-- ================= BREAKFAST ================= -->
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="breakfast">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Moonrise Breakfast</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Eggs, chicken sausages, baked beans, grilled tomatoes, crispy bacon served with waffles, pancakes, or French toast.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="breakfast">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Pancakes or Waffles (with Eggs & Sausage)</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Served with scrambled eggs, chicken sausages, whipped cream, or maple syrup.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦15,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="breakfast">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Pancakes or Waffles (Plain)</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Served with whipped cream, maple syrup, or butter.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="breakfast">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Club Sandwich & Fries</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Seasoned beef strips with fresh vegetables served with fries.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦10,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="breakfast">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Nigerian Breakfast</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Golden fried yam, sweet plantain, or crispy fries served with a fluffy omelette or scrambled eggs, spicy pepper sauce, and grilled chicken sausages.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦10,000</span>
-      </div>
-
-      <!-- ================= SHARING PLATTERS ================= -->
-      <div class="menu-item md:col-span-2 bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/20 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#D4AF37]/40 shadow-xl group reveal-item" data-category="platters">
-        <div class="space-y-1.5 max-w-2xl">
-          <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">Feeds 6 People</div>
-          <h4 class="text-[16px] sm:text-[18px] font-semibold text-white group-hover:text-[#D4AF37] name-target apple-transition">Seafood Platter</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#A1A1A6] font-light leading-snug">Premium ocean selection featuring Grilled prawns, Salmon, Calamari, Fried shrimp, served with fries, garlic butter sauce, and lemon wedges.</p>
-        </div>
-        <span class="text-[16px] sm:text-[18px] font-bold text-[#D4AF37] shrink-0">₦120,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
-        <div class="space-y-1 max-w-[75%]">
-          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Grilled Platter</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Grilled chicken, chicken wings, french fries, plantain, coleslaw, and rich dipping sauces.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦88,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
-        <div class="space-y-1 max-w-[75%]">
-          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Nigerian Grill Platter</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Smoky Asun rice, gizzard, grilled chicken, roasted plantain, golden yam fries, and signature spicy pepper sauce.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦88,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="platters">
-        <div class="space-y-1 max-w-[75%]">
-          <div class="text-[9px] font-bold tracking-wider uppercase text-[#D4AF37]">Feeds 6 People</div>
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Signature Sharing Platter</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy chicken wings, golden spring rolls, savory samosas, onion rings, and fries served with three distinct dipping sauces.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦60,000</span>
-      </div>
-
-      <!-- ================= APPETIZERS ================= -->
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Buffalo Chicken Wings</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy chicken wings tossed in rich buffalo sauce with butter and spices.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Steak Bites</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Tender diced beef sautéed with garlic, herbs, and black pepper glaze.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦9,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Spring Rolls (Chicken / Veg / Prawn)</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy rolls filled with seasoned chicken, fresh vegetables, or prawns, served with sweet chili dip.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦5,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Peppered Gizzard</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Sautéed chicken gizzard cooked in spicy pepper sauce with onions and bell peppers.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Suya Chicken Skewers</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Grilled chicken skewers coated in traditional suya spice, served with sliced onions.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦9,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Chili Garlic Calamari</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Lightly fried calamari tossed in a spicy chili garlic sauce.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦11,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="appetizers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Italian Loaded Fries</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy fries topped with marinara sauce, seasoned minced beef, and melted mozzarella & parmesan cheese.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦12,000</span>
-      </div>
-
-      <!-- ================= NIGERIAN & FUSION HERITAGE ================= -->
-      <div class="menu-item md:col-span-2 bg-gradient-to-br from-[#09090B] to-[#121214] border border-[#D4AF37]/20 p-5 sm:p-6 rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#D4AF37]/40 shadow-xl group reveal-item" data-category="heritage">
-        <div class="space-y-1.5 max-w-2xl">
-          <div class="inline-block bg-gradient-to-r from-[#F3E5AB] to-[#D4AF37] text-black text-[9px] font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full">Signature Dish</div>
-          <h4 class="text-[16px] sm:text-[18px] font-semibold text-white group-hover:text-[#D4AF37] name-target apple-transition">Velvet Moon Snail Jollof</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#A1A1A6] font-light leading-snug">Tender snails cooked in spicy sauce, served with premium jollof rice and fried plantain.</p>
-        </div>
-        <span class="text-[16px] sm:text-[18px] font-bold text-[#D4AF37] shrink-0">₦19,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Grilled Chicken</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Char-grilled chicken seasoned with local spices, served with jollof rice and fried plantain.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦13,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Grilled Croaker Fish</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Whole croaker fish grilled with herbs and spices, served with chips or fried yam.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Beef Stew</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Rich tomato-based beef stew slow-cooked with peppers and spices, served with white basmati rice and fried plantain.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦14,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Jerk Chicken</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Jamaican-style marinated chicken grilled with thyme, all spice, and scotch bonnet, served with rice & peas and a choice of fried plantain or fresh salad.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦14,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Salmon & Mashed Potatoes</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Herb-seasoned grilled salmon fillet served with creamy mashed potatoes and mushy peas.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦29,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="heritage">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Curry Goat</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Slow-cooked goat meat simmered in Caribbean curry spices, served with rice & peas and coleslaw.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦16,500</span>
-      </div>
-
-      <!-- ================= ITALIAN CRAFT & PASTA ================= -->
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Creamy Chicken Pasta</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Pasta tossed in creamy sauce with grilled chicken, mushrooms, onions, bell peppers, and parmesan cheese.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦14,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Stir-Fry Shrimp Noodles</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Stir-fried noodles with shrimp, mixed vegetables, garlic, soy sauce, and light seasoning.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦16,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Spaghetti Bolognese</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Slow-cooked minced beef in tomato and herb sauce, served with spaghetti and grated parmesan cheese.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦15,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Lasagna</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Layered pasta sheets with rich slow-cooked meat sauce, creamy béchamel, and premium melted cheese, baked to perfection.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦26,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Marry Me Chicken Pasta (TikTok Viral)</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Creamy parmesan pasta with tender chicken, sun-dried tomatoes, garlic, and herbs.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦22,000</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Honey Garlic Chicken with Cheesy Alfredo Pasta</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Honey-glazed chicken served over rich, creamy alfredo pasta finished with parmesan.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦19,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="italian">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Spicy Italian Loaded Pizza</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Spicy tomato base topped with Italian meats, peppers, and mozzarella cheese.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦19,500</span>
-      </div>
-
-      <!-- ================= GOURMET BURGERS ================= -->
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="burgers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Deluxe Beef Burger</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Juicy beef patty with lettuce, tomato, cheese, and house sauce, served with fries.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦14,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="burgers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Supreme Chicken Burger</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Crispy chicken fillet with lettuce, cheese, and signature sauce, served with fries.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦13,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="burgers">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Double Cheese Burger</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Double beef patties layered with cheese, pickles, and sauce, served with fries.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦17,500</span>
-      </div>
-
-      <!-- ================= DESSERTS ================= -->
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="desserts">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Chocolate Lava Cake</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Warm chocolate cake with a rich molten center.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦7,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="desserts">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Chocolate Brownie</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Rich, fudgy chocolate brownie served warm.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦6,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="desserts">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Vanilla Ice Cream (2 Scoops)</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Classic creamy vanilla ice cream.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦5,500</span>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="desserts">
-        <div class="space-y-1 max-w-[75%]">
-          <h4 class="text-[14px] sm:text-[15px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Cheese Cake Slice</h4>
-          <p class="text-[12px] sm:text-[13px] text-[#86868B] font-light leading-snug">Smooth baked cheesecake with biscuit base.</p>
-        </div>
-        <span class="text-[14px] font-semibold text-white group-hover:text-[#D4AF37] apple-transition shrink-0">₦8,000</span>
-      </div>
-
-      <!-- ================= DRINKS MENU ================= -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🥃 Vodka</h3>
-      </div>
-      
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Sky Vodka Flavored</h4>
-        <span class="text-[14px] text-white">₦50,000</span>
-        <p class="hidden">Vodka spirits selection</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Absolut</h4>
-        <span class="text-[14px] text-white">₦60,000</span>
-        <p class="hidden">Vodka spirits selection</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Ciroc Original</h4>
-        <span class="text-[14px] text-white">₦90,000</span>
-        <p class="hidden">Vodka spirits selection</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Ciroc Raspberry</h4>
-        <span class="text-[14px] text-white">₦110,000</span>
-        <p class="hidden">Vodka spirits selection</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Ciroc Pineapple</h4>
-        <span class="text-[14px] text-white">₦120,000</span>
-        <p class="hidden">Vodka spirits selection</p>
-      </div>
-
-      <!-- Whiskey, Cognac & Bourbon Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🪵 Whiskey, Cognac & Bourbon</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Jameson Black Barrel</h4><span class="text-[14px] text-white">₦80,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Hennessy VS</h4><span class="text-[14px] text-white">₦100,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Hennessy VSOP</h4><span class="text-[14px] text-white">₦190,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Hennessy XO</h4><span class="text-[14px] text-white">₦500,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Martell VS</h4><span class="text-[14px] text-white">₦100,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Martell VSOP</h4><span class="text-[14px] text-white">₦200,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Martell XO</h4><span class="text-[14px] text-white">₦655,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Jack Daniel's</h4><span class="text-[14px] text-white">₦70,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Jameson</h4><span class="text-[14px] text-white">₦60,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Glenfiddich 12yr</h4><span class="text-[14px] text-white">₦120,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Glenfiddich 15yr</h4><span class="text-[14px] text-white">₦160,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Glenfiddich 18yr</h4><span class="text-[14px] text-white">₦230,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Glenfiddich 21yr</h4><span class="text-[14px] text-white">₦700,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Johnnie Walker Black</h4><span class="text-[14px] text-white">₦90,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Johnnie Walker Blue</h4><span class="text-[14px] text-white">₦1,200,000</span><p class="hidden">Whiskey cognac</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Monkey Shoulders</h4><span class="text-[14px] text-white">₦85,000</span><p class="hidden">Whiskey cognac</p></div>
-
-      <!-- Tequila Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🌵 Tequila</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Casamigos Blanco</h4><span class="text-[14px] text-white">₦180,000</span><p class="hidden">Tequila spirits</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Casamigos Reposado</h4><span class="text-[14px] text-white">₦190,000</span><p class="hidden">Tequila spirits</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Don Julio Blanco</h4><span class="text-[14px] text-white">₦210,000</span><p class="hidden">Tequila spirits</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Don Julio Reposado</h4><span class="text-[14px] text-white">₦230,000</span><p class="hidden">Tequila spirits</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Olmeca</h4><span class="text-[14px] text-white">₦65,000</span><p class="hidden">Tequila spirits</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Sierra Tequila</h4><span class="text-[14px] text-white">₦50,000</span><p class="hidden">Tequila spirits</p></div>
-
-      <!-- Champagne / Sparkling Wine Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🍾 Champagne & Sparkling Wine</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Andre Brut</h4><span class="text-[14px] text-white">₦43,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Andre Rose</h4><span class="text-[14px] text-white">₦45,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Blue Nun 24k Gold</h4><span class="text-[14px] text-white">₦50,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Blue Nun Rose</h4><span class="text-[14px] text-white">₦50,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Martini Prosecco</h4><span class="text-[14px] text-white">₦70,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Moet & Chandon Brut</h4><span class="text-[14px] text-white">₦160,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Moet Nectar Rose</h4><span class="text-[14px] text-white">₦190,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Veuve Clicquot</h4><span class="text-[14px] text-white">₦180,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Dom Perignon Brut</h4><span class="text-[14px] text-white">₦900,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Dom Perignon Rose</h4><span class="text-[14px] text-white">₦1,800,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Belaire Lux</h4><span class="text-[14px] text-white">₦90,000</span><p class="hidden">Champagne sparkling wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Belaire Rose</h4><span class="text-[14px] text-white">₦100,000</span><p class="hidden">Champagne sparkling wine</p></div>
-
-      <!-- Wines Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🍇 Premium Wines</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Chamdor (Non-Alcoholic)</h4><span class="text-[14px] text-white">₦20,000</span><p class="hidden">Wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Carlo Rossi</h4><span class="text-[14px] text-white">₦30,000</span><p class="hidden">Wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Four Cousins</h4><span class="text-[14px] text-white">₦36,000</span><p class="hidden">Wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Baron de Valls</h4><span class="text-[14px] text-white">₦44,000</span><p class="hidden">Wine</p></div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Nederburg</h4><span class="text-[14px] text-white">₦56,000</span><p class="hidden">Wine</p></div>
-
-      <!-- Milkshakes & Cocktails Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🥛 Milkshakes & Mixology Cocktails</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Gourmet Milkshakes</h4><p class="text-[12px] text-[#86868B]">Choice of Banana, Strawberry, or Chocolate.</p></div>
-        <span class="text-[14px] text-white">₦11,000</span>
-      </div>
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Classic Cocktails</h4><p class="text-[12px] text-[#86868B]">Mojito, Long Island Iced Tea, Margarita (Classic/Frozen), Pina Colada, Cosmopolitan, Whiskey Sour, or Expresso Martini.</p></div>
-        <span class="text-[14px] text-white">₦11,000</span>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Strawberry Daiquiri</h4>
-        <span class="text-[14px] text-white">₦15,000</span>
-        <p class="hidden">Cocktail</p>
-      </div>
-
-      <!-- Mocktails & Juices Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🍹 Mocktails & Fresh Juices</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Artisanal Mocktails</h4><p class="text-[12px] text-[#86868B]">Virgin Mojito, Chapman, Virgin Pina Colada, or Cucumber Cooler.</p></div>
-        <span class="text-[14px] text-white">₦7,000</span>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Virgin Strawberry Daiquiri</h4>
-        <span class="text-[14px] text-white">₦9,000</span>
-        <p class="hidden">Mocktail</p>
-      </div>
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Freshly Squeezed Juices</h4><p class="text-[12px] text-[#86868B]">Choice of Pineapple, Orange, or Watermelon Juice.</p></div>
-        <span class="text-[14px] text-white">₦7,000</span>
-      </div>
-
-      <!-- Shots, Beers & Mixers Section -->
-      <div class="menu-item md:col-span-2 border-b border-white/[0.06] pt-6 pb-2 reveal-item" data-category="drinks">
-        <h3 class="text-[16px] font-semibold tracking-wider text-[#D4AF37] uppercase">🎯 Shots, Beers & Mixers</h3>
-      </div>
-
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Premium Shots & Tots</h4><p class="text-[12px] text-[#86868B]">Olmeca (₦3,500) • Sierra (₦3,000) • House Vodka (₦3,000) • Gordon Gin (₦3,000) • Bacardi Rum (₦3,000) • House Whiskey (₦2,000)</p></div>
-      </div>
-      <div class="menu-item flex justify-between items-start gap-4 group reveal-item" data-category="drinks">
-        <div class="space-y-1"><h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Beers & Ciders</h4><p class="text-[12px] text-[#86868B]">Heineken, Budweiser, Corona, Desperados, Origin, or Smirnoff Ice.</p></div>
-        <span class="text-[14px] text-white">₦3,000</span>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Double Black Beer</h4>
-        <span class="text-[14px] text-white">₦3,500</span>
-        <p class="hidden">Beer</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Red Bull / Schweppes / Tonic / Soda</h4>
-        <span class="text-[14px] text-white">₦3,000</span>
-        <p class="hidden">Soft drink mixers</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Coke / Fanta / Sprite</h4>
-        <span class="text-[14px] text-white">₦1,500</span>
-        <p class="hidden">Soft drinks</p>
-      </div>
-      <div class="menu-item flex justify-between items-center group reveal-item" data-category="drinks">
-        <h4 class="text-[14px] font-medium text-[#F5F5F7] group-hover:text-[#D4AF37] name-target apple-transition">Water (Still / Sparkling)</h4>
-        <span class="text-[14px] text-white">₦1,000 / ₦4,000</span>
-        <p class="hidden">Water hydration</p>
-      </div>
-
-    </div>
-  </main>
-
   <!-- FOOTER -->
   <footer class="bg-[#030303] py-8 px-4 sm:px-8 border-t border-white/[0.03]">
     <div class="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[#636366] text-[11px] font-light gap-3 text-center sm:text-left">
       <p>&copy; 2026 Velvet Moon Collective. Built beautifully for mobile and web screens.</p>
       <div class="flex space-x-4">
-        <a href="index.html" class="hover:text-white apple-transition">Return Home</a>
         <a href="#" class="hover:text-white apple-transition">Privacy Policy</a>
+        <a href="#" class="hover:text-white apple-transition">Terms of Service</a>
       </div>
     </div>
   </footer>
 
-  <!-- CONTROLS ENGINE & ANIMATION MATRIX SCRIPT -->
+  <!-- LUXURY CONTROLS AND ANIMATION INTERPRETATION SCRIPT -->
   <script>
-    // Initialize Smooth Scroll 
+    // 1. INITIALIZE LENIS SMOOTH SCROLL (Aesthetic Momentum Scrolling)
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
     });
+
     function raf(time) {
       lenis.tick(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 
-    let currentCategory = 'all';
+    // Sync ScrollTrigger with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
 
+    // 2. GSAP CINEMATIC ENTRANCE & INTERACTIVE PARALLAX SCROLL
     window.addEventListener('DOMContentLoaded', () => {
       gsap.registerPlugin(ScrollTrigger);
 
-      // Intro Entrance Sequence
+      // --- Hero Loading Timeline ---
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
+      
       tl.to('#main-nav', { y: 0, opacity: 1, duration: 1.2 })
-        .to('#menu-tag', { y: 0, opacity: 1, duration: 0.8 }, '-=0.8')
-        .to('#menu-title', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
-        .to('#menu-desc', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
-        .to('#menu-controls', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
-        .call(() => {
-          // Initialize individual item reveals after layout intro
-          gsap.utils.toArray('.reveal-item').forEach(item => {
-            gsap.to(item, {
-              opacity: 1,
-              y: 0,
-              duration: 0.8,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: item,
-                start: 'top 92%',
-                toggleActions: 'play none none none'
-              }
-            });
-          });
-        });
+        .to('#hero-tag', { y: 0, opacity: 1, duration: 0.8 }, '-=0.8')
+        .to('#hero-title', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#hero-desc', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6')
+        .to('#hero-btns', { y: 0, opacity: 1, duration: 0.8 }, '-=0.6');
 
-      // Search Handler
-      document.getElementById('menu-search').addEventListener('input', (e) => {
-        filterMenu(currentCategory, e.target.value.toLowerCase());
+      // Try Autoplay Background Music safely on user engagement
+      const music = document.getElementById('bgMusic');
+      if(music) {
+        let playPromise = music.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // If browser blocks autoplay, start it on the first click interaction anywhere
+                window.addEventListener('click', () => { music.play(); }, { once: true });
+            });
+        }
+      }
+
+      // --- Cinematic Background Video Parallax ---
+      gsap.to('#hero-video-wrap', {
+        yPercent: 30,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+
+      // --- Global Text & Headers Scroll Triggers (Staggered Entrance & Clean Exit) ---
+      gsap.utils.toArray('.text-trigger').forEach(trigger => {
+        gsap.to(trigger.querySelectorAll('.reveal-item'), {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: trigger,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Image Scale In Parallax ---
+      gsap.utils.toArray('.visual-trigger').forEach(trigger => {
+        gsap.to(trigger.querySelectorAll('.reveal-scale'), {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: trigger,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Menu Rows Reveal Loops ---
+      gsap.utils.toArray('.menu-group-trigger').forEach(group => {
+        gsap.to(group.querySelectorAll('.reveal-item'), {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: group,
+            start: 'top 85%',
+            end: 'bottom 15%',
+            toggleActions: 'play reverse play reverse'
+          }
+        });
+      });
+
+      // --- Bento Grid Layout Transform On Approach ---
+      gsap.to('.bento-trigger .reveal-scale', {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
+        stagger: 0.15,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.bento-trigger',
+          start: 'top 85%',
+          end: 'bottom 10%',
+          toggleActions: 'play reverse play reverse'
+        }
       });
     });
-
-    // Filtering Engine Layout
-    function filterCategory(category) {
-      currentCategory = category;
-      const searchVal = document.getElementById('menu-search').value.toLowerCase();
-      
-      // Update Tab Button UI styles
-      document.querySelectorAll('.category-btn').forEach(btn => {
-        if (btn.getAttribute('data-id') === category) {
-          btn.className = "category-btn active px-4 py-1.5 rounded-full border border-[#D4AF37] text-xs font-medium uppercase tracking-wider text-black bg-[#D4AF37] shrink-0 apple-transition cursor-pointer";
-        } else {
-          btn.className = "category-btn px-4 py-1.5 rounded-full border border-white/[0.06] text-xs font-medium uppercase tracking-wider text-[#86868B] bg-[#09090B] hover:text-white shrink-0 apple-transition cursor-pointer";
-        }
-      });
-
-      filterMenu(category, searchVal);
-    }
-
-    function filterMenu(category, searchPhrase) {
-      const items = document.querySelectorAll('.menu-item');
-      
-      items.forEach(item => {
-        const itemCat = item.getAttribute('data-category');
-        
-        // Safety Fallback check for header segments inside sections
-        const nameNode = item.querySelector('.name-target');
-        const descNode = item.querySelector('p');
-        
-        const itemName = nameNode ? nameNode.textContent.toLowerCase() : '';
-        const itemDesc = descNode ? descNode.textContent.toLowerCase() : '';
-        
-        const matchesCategory = (category === 'all' || itemCat === category);
-        const matchesSearch = (!searchPhrase || itemName.includes(searchPhrase) || itemDesc.includes(searchPhrase));
-
-        if (matchesCategory && matchesSearch) {
-          // Headers should display as block, normal food listings as flex
-          if (item.tagName === 'DIV' && !nameNode) {
-             item.style.display = 'block';
-          } else {
-             item.style.display = 'flex';
-          }
-          gsap.to(item, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' });
-        } else {
-          gsap.to(item, { 
-            opacity: 0, 
-            scale: 0.96, 
-            duration: 0.25, 
-            ease: 'power2.in',
-            onComplete: () => { item.style.display = 'none'; }
-          });
-        }
-      });
-      
-      // Refresh layouts dynamically for accurate scroll markers
-      setTimeout(() => { ScrollTrigger.refresh(); }, 300);
-    }
   </script>
 </body>
 </html>
