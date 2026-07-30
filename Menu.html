@@ -2,434 +2,374 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Velvet Moon · Menu</title>
-
-  <!-- Font + Icons (clean system stack) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velvet Moon | Fine Dining & Lounge</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background: #0a0a0e;
-      color: #f5f5f7;
-      padding: 0 0 4rem 0;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b0c10;
+      color: #e0e0e0;
     }
-
-    /* Apple‑inspired minimal gold accent */
-    .gold { color: #d4af37; }
-    .bg-gold { background: #d4af37; }
-    .border-gold { border-color: #d4af3750; }
-
-    /* Glass + blur with soft edges */
-    .glass-panel {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(12px) saturate(180%);
-      -webkit-backdrop-filter: blur(12px) saturate(180%);
-      border: 0.5px solid rgba(255, 255, 255, 0.04);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    .font-serif-title {
+      font-family: 'Cinzel', serif;
     }
-
-    .glass-panel-light {
-      background: rgba(255, 255, 255, 0.02);
-      backdrop-filter: blur(6px) saturate(140%);
-      -webkit-backdrop-filter: blur(6px) saturate(140%);
-      border: 0.5px solid rgba(255, 255, 255, 0.03);
-    }
-
-    /* Smooth hover – like Apple's subtle lift */
     .menu-card {
-      transition: all 0.25s cubic-bezier(0.25, 0.1, 0.15, 1);
-      border: 0.5px solid rgba(255, 255, 255, 0.04);
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 20px;
-      padding: 16px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(4px);
-      cursor: default;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
     }
-
     .menu-card:hover {
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(212, 175, 55, 0.25);
-      transform: scale(1.005) translateY(-1px);
-      box-shadow: 0 12px 40px -12px rgba(0,0,0,0.7);
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
     }
-
     .menu-card-special {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(255, 215, 100, 0.02));
-      border-color: rgba(212, 175, 55, 0.2);
-      border-width: 0.8px;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(20, 20, 25, 0.6) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
-
-    .menu-card-special:hover {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.10), rgba(255, 215, 100, 0.04));
-      border-color: #d4af3760;
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #f3e5ab;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
-
     .price-tag {
       font-weight: 600;
       color: #d4af37;
-      letter-spacing: -0.01em;
-      font-size: 1rem;
-      padding-left: 12px;
-      white-space: nowrap;
     }
-
     .badge-special {
-      background: linear-gradient(145deg, #d4af37, #e8c95a);
-      color: #0a0a0e;
-      font-size: 0.55rem;
+      background-color: #d4af37;
+      color: #0b0c10;
+      font-size: 0.65rem;
       font-weight: 700;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      display: inline-block;
-      margin-left: 8px;
-      vertical-align: middle;
-      box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
-    }
-
-    .section-title {
-      font-weight: 600;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.25rem;
-      border-bottom: 0.5px solid rgba(255, 255, 255, 0.04);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .section-title i {
-      color: #d4af37;
-      font-size: 1rem;
-      width: 1.4rem;
-    }
-
-    /* Category pills – Apple‑style capsule */
-    .category-pill {
-      transition: all 0.2s ease;
-      cursor: pointer;
-      user-select: none;
-      padding: 6px 18px;
-      border-radius: 40px;
-      border: 0.5px solid rgba(255, 255, 255, 0.06);
-      background: rgba(255, 255, 255, 0.02);
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
-      backdrop-filter: blur(4px);
-      color: #b0b0b8;
-    }
-
-    .category-pill.active {
-      background: #d4af37;
-      color: #0a0a0e;
-      border-color: #d4af37;
-      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
-      font-weight: 600;
-    }
-
-    .category-pill:not(.active):hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: #f5f5f7;
-      border-color: rgba(255, 255, 255, 0.12);
-    }
-
-    .search-box {
-      background: rgba(255, 255, 255, 0.04);
-      border: 0.5px solid rgba(255, 255, 255, 0.06);
-      border-radius: 40px;
-      padding: 8px 18px 8px 40px;
-      font-size: 0.9rem;
-      color: #f5f5f7;
-      width: 100%;
-      outline: none;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(4px);
-      font-weight: 400;
-      letter-spacing: -0.01em;
-    }
-
-    .search-box:focus {
-      border-color: #d4af37;
-      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.08);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .search-box::placeholder {
-      color: rgba(255, 255, 255, 0.25);
-      font-weight: 300;
-    }
-
-    .sticky-nav {
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      background: rgba(10, 10, 14, 0.7);
-      border-bottom: 0.5px solid rgba(255, 255, 255, 0.03);
-    }
-
-    /* Hide scrollbar but keep scroll */
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* menu items dim/highlight */
-    .menu-item {
-      transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
-    }
-    .menu-item.highlight {
-      opacity: 1 !important;
-      transform: scale(1) !important;
-      filter: brightness(1) !important;
-    }
-    .menu-item.dim {
-      opacity: 0.2 !important;
-      transform: scale(0.97) !important;
-      filter: brightness(0.4) saturate(0.6) !important;
-      pointer-events: none;
-    }
-
-    /* subtle scroll */
-    ::-webkit-scrollbar { width: 3px; height: 3px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 20px; }
-
-    /* reserve button */
-    .reserve-btn {
-      background: #d4af37;
-      color: #0a0a0e;
-      font-weight: 600;
-      font-size: 0.7rem;
-      padding: 6px 16px;
-      border-radius: 40px;
-      transition: all 0.2s ease;
-      border: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      letter-spacing: -0.01em;
-    }
-    .reserve-btn:hover {
-      background: #e0c04a;
-      transform: scale(1.02);
-      box-shadow: 0 4px 16px rgba(212, 175, 55, 0.25);
-    }
-
-    /* responsive tweaks */
-    @media (max-width: 640px) {
-      .menu-card { padding: 14px 14px; border-radius: 16px; }
-      .price-tag { font-size: 0.9rem; }
-      .section-title { font-size: 1rem; }
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      margin-left: 0.5rem;
+      letter-spacing: 0.05em;
     }
   </style>
 </head>
-<body>
+<body class="min-h-screen pb-16">
 
-  <!-- TOP BAR – Apple clean, minimal -->
-  <div class="sticky top-0 z-50 sticky-nav px-4 py-3 flex flex-wrap items-center justify-between gap-3">
-    <div class="flex items-center gap-2">
-      <span class="text-xl font-semibold tracking-tight text-white/90">Velvet <span class="gold">Moon</span></span>
-      <span class="text-[11px] text-white/30 hidden sm:inline ml-1 font-light">· menu</span>
+  <!-- Header Section -->
+  <header class="relative py-12 px-4 text-center border-b border-white/10 bg-gradient-to-b from-purple-950/20 via-black to-[#0b0c10]">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <p class="text-amber-400/80 text-sm tracking-widest uppercase font-medium">Welcome To</p>
+      <h1 class="font-serif-title text-5xl sm:text-6xl text-white tracking-wide font-bold">VELVET MOON</h1>
+      <p class="text-white/50 text-sm sm:text-base font-light max-w-md mx-auto">An exquisite fusion of culinary heritage, gourmet delights, and premium spirits.</p>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-6xl mx-auto px-4 pt-10 space-y-12">
+
+    <!-- FOOD MENU -->
+    <div>
+      <h2 class="text-2xl font-serif-title text-center text-amber-400 tracking-wider uppercase mb-8">Food Menu</h2>
+
+      <!-- Appetizers -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-regular fa-circle-dot text-amber-400"></i> Appetizers</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Buffalo Wings</h4><p class="text-xs text-white/50 mt-1 font-light">Spicy, buttery hot sauce</p></div>
+            <span class="price-tag text-base">₦8,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Steak Bites</h4><p class="text-xs text-white/50 mt-1 font-light">Garlic black pepper</p></div>
+            <span class="price-tag text-base">₦9,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Suya Skewers</h4><p class="text-xs text-white/50 mt-1 font-light">Spicy grilled chicken</p></div>
+            <span class="price-tag text-base">₦9,000</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Nigerian Heritage -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-regular fa-flag text-amber-400"></i> Nigerian Heritage</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card menu-card-special col-span-1 sm:col-span-2 p-5 rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+            <div>
+              <div class="flex items-center">
+                <h4 class="font-semibold text-white text-lg">Velvet Moon Snail Jollof</h4>
+                <span class="badge-special">Chef's Special</span>
+              </div>
+              <p class="text-xs text-white/60 mt-1 font-light">Snails in spicy sauce, smoky jollof rice, plantain</p>
+            </div>
+            <span class="price-tag text-lg">₦23,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Fried Chicken & Rice</h4><p class="text-xs text-white/50 mt-1 font-light">Jollof or fried rice</p></div>
+            <span class="price-tag text-base">₦16,000</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Grilled Croaker</h4><p class="text-xs text-white/50 mt-1 font-light">Whole fish, fried yam</p></div>
+            <span class="price-tag text-base">₦17,500</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Italian Craft -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-pizza-slice text-amber-400"></i> Italian Craft</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Lasagna Emigliana</h4><p class="text-xs text-white/50 mt-1 font-light">Minced meat sauce</p></div>
+            <span class="price-tag text-base">₦26,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Marry Me Chicken Pizza</h4><p class="text-xs text-white/50 mt-1 font-light">Parmesan cream, chicken</p></div>
+            <span class="price-tag text-base">₦22,000</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gourmet Burgers -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-burger text-amber-400"></i> Gourmet Burgers</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Double Cheeseburger</h4><p class="text-xs text-white/50 mt-1 font-light">Two patties, double cheese</p></div>
+            <span class="price-tag text-base">₦17,000</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Supreme Chicken Burger</h4><p class="text-xs text-white/50 mt-1 font-light">Gouda, rocket, garlic mayo</p></div>
+            <span class="price-tag text-base">₦13,500</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sharing Platters -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-utensils text-amber-400"></i> Sharing Platters</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card menu-card-special col-span-1 sm:col-span-2 p-5 rounded-xl flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+            <div>
+              <div class="flex items-center">
+                <h4 class="font-semibold text-white text-lg">Seafood Platter</h4>
+                <span class="badge-special">Feeds 6</span>
+              </div>
+              <p class="text-xs text-white/60 mt-1 font-light">Prawns, salmon, calamari, shrimp, fries, garlic butter</p>
+            </div>
+            <span class="price-tag text-lg">₦120,000</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Grilled Platter</h4><p class="text-xs text-white/50 mt-1 font-light">Chicken, wings, fries, plantain</p></div>
+            <span class="price-tag text-base">₦88,000</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Nigerian Grill Platter</h4><p class="text-xs text-white/50 mt-1 font-light">Asun rice, gizzard, plantain</p></div>
+            <span class="price-tag text-base">₦88,000</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Signature Platter</h4><p class="text-xs text-white/50 mt-1 font-light">Wings, spring rolls, samosas</p></div>
+            <span class="price-tag text-base">₦60,000</span>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <div class="flex items-center gap-3 flex-1 max-w-sm min-w-[140px] relative">
-      <i class="fa-solid fa-magnifying-glass text-white/20 text-sm absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-      <input id="menuSearch" type="text" placeholder="Search dishes, drinks..." class="search-box pl-10">
-    </div>
+    <!-- DRINKS MENU -->
+    <div class="pt-8">
+      <h2 class="text-2xl font-serif-title text-center text-amber-400 tracking-wider uppercase mb-8">Drinks Menu</h2>
 
-    <a href="#" class="reserve-btn">
-      <i class="fa-regular fa-calendar text-xs"></i> <span class="hidden sm:inline">Reserve</span>
-    </a>
-  </div>
-
-  <!-- CATEGORY PILLS – smooth scrollable -->
-  <div class="sticky top-[62px] z-40 bg-[#0a0a0e]/70 backdrop-blur-xl border-b border-white/5 px-4 py-2.5 flex gap-1.5 overflow-x-auto no-scrollbar">
-    <button class="category-pill active" data-cat="all">All</button>
-    <button class="category-pill" data-cat="appetizers">Appetizers</button>
-    <button class="category-pill" data-cat="heritage">Nigerian</button>
-    <button class="category-pill" data-cat="italian">Italian</button>
-    <button class="category-pill" data-cat="burgers">Burgers</button>
-    <button class="category-pill" data-cat="platters">Platters</button>
-    <button class="category-pill" data-cat="drinks">Drinks</button>
-  </div>
-
-  <!-- MAIN CONTENT -->
-  <main class="max-w-6xl mx-auto px-4 pt-6 pb-12">
-
-    <!-- Appetizers -->
-    <div class="mb-10">
-      <div class="section-title"><i class="fa-regular fa-circle-dot"></i> Appetizers</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-item" data-cat="appetizers">
-          <div><span class="font-medium text-white/90">Buffalo Wings</span><p class="text-xs text-white/40 mt-0.5 font-light">Spicy, buttery hot sauce</p></div>
-          <span class="price-tag">₦8,500</span>
+      <!-- Vodka -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-wine-bottle text-amber-400"></i> Vodka</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Sky Vodka Flavored</h4></div><span class="price-tag">₦50,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Absolut</h4></div><span class="price-tag">₦60,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Ciroc Original</h4></div><span class="price-tag">₦90,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Ciroc Raspberry</h4></div><span class="price-tag">₦110,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Ciroc Pineapple</h4></div><span class="price-tag">₦120,000</span></div>
         </div>
-        <div class="menu-card menu-item" data-cat="appetizers">
-          <div><span class="font-medium text-white/90">Steak Bites</span><p class="text-xs text-white/40 mt-0.5 font-light">Garlic black pepper</p></div>
-          <span class="price-tag">₦9,500</span>
+      </section>
+
+      <!-- Tequila -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-glass-whiskey text-amber-400"></i> Tequila</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Casamigos Blanco</h4></div><span class="price-tag">₦180,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Casamigos Reposado</h4></div><span class="price-tag">₦190,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Don Julio Blanco</h4></div><span class="price-tag">₦210,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Don Julio Reposado</h4></div><span class="price-tag">₦230,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Olmeca</h4></div><span class="price-tag">₦65,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Sierra Tequila</h4></div><span class="price-tag">₦50,000</span></div>
         </div>
-        <div class="menu-card menu-item" data-cat="appetizers">
-          <div><span class="font-medium text-white/90">Suya Skewers</span><p class="text-xs text-white/40 mt-0.5 font-light">Spicy grilled chicken</p></div>
-          <span class="price-tag">₦9,000</span>
+      </section>
+
+      <!-- Whiskey, Cognac & Bourbon -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-whiskey-glass text-amber-400"></i> Whiskey, Cognac & Bourbon</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Jameson Black Barrel</h4></div><span class="price-tag">₦80,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Hennessy VS</h4></div><span class="price-tag">₦100,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Hennessy VSOP</h4></div><span class="price-tag">₦190,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Hennessy XO</h4></div><span class="price-tag">₦500,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Martell VS</h4></div><span class="price-tag">₦100,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Martell Swift</h4></div><span class="price-tag">₦200,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Martell XO</h4></div><span class="price-tag">₦650,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Jack Daniel's</h4></div><span class="price-tag">₦70,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Jameson</h4></div><span class="price-tag">₦60,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Glenfiddich 12yr</h4></div><span class="price-tag">₦120,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Glenfiddich 15yr</h4></div><span class="price-tag">₦160,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Glenfiddich 18yr</h4></div><span class="price-tag">₦230,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Glenfiddich 21yr</h4></div><span class="price-tag">₦700,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Johnnie Walker Black</h4></div><span class="price-tag">₦90,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Johnnie Walker Blue</h4></div><span class="price-tag">₦1,200,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Monkey Shoulder</h4></div><span class="price-tag">₦85,000</span></div>
         </div>
+      </section>
+
+      <!-- Champagne & Sparkling Wine -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-wine-glass text-amber-400"></i> Champagne & Sparkling Wine</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Andre Brut</h4></div><span class="price-tag">₦43,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Andre Rose</h4></div><span class="price-tag">₦45,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Blue Nun 24k Gold</h4></div><span class="price-tag">₦50,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Blue Nun Rose</h4></div><span class="price-tag">₦50,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Martini Prosecco</h4></div><span class="price-tag">₦70,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Moet & Chandon Brut</h4></div><span class="price-tag">₦160,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Moet Nectar Rose</h4></div><span class="price-tag">₦190,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Veuve Clicquot</h4></div><span class="price-tag">₦180,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Dom Perignon Brut</h4></div><span class="price-tag">₦900,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Dom Perignon Rose</h4></div><span class="price-tag">₦1,800,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Belaire Lux</h4></div><span class="price-tag">₦90,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Belaire Rose</h4></div><span class="price-tag">₦100,000</span></div>
+        </div>
+      </section>
+
+      <!-- Wines -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-wine-glass-empty text-amber-400"></i> Wines</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Chamdor (Non-Alcoholic)</h4></div><span class="price-tag">₦20,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Carlo Rossi</h4></div><span class="price-tag">₦30,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Four Cousins</h4></div><span class="price-tag">₦36,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Baron de Valls</h4></div><span class="price-tag">₦44,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Nederburg</h4></div><span class="price-tag">₦56,000</span></div>
+        </div>
+      </section>
+
+      <!-- Classic Cocktails -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-cocktail text-amber-400"></i> Classic Cocktails</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Mojito</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Long Island Iced Tea</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Margarita (Classic/Frozen)</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Pina Colada</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Cosmopolitan</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Whiskey Sour</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Expresso Martini</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Strawberry Daiquiri</h4></div><span class="price-tag">₦15,000</span></div>
+        </div>
+      </section>
+
+      <!-- Mocktails -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-glass-water text-amber-400"></i> Mocktails</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Virgin Mojito</h4></div><span class="price-tag">₦7,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Chapman</h4></div><span class="price-tag">₦7,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Virgin Strawberry Daiquiri</h4></div><span class="price-tag">₦9,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Virgin Pina Colada</h4></div><span class="price-tag">₦7,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Cucumber Cooler</h4></div><span class="price-tag">₦7,000</span></div>
+        </div>
+      </section>
+
+      <!-- Milkshake -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-ice-cream text-amber-400"></i> Milkshake</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Banana Milkshake</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Strawberry Milkshake</h4></div><span class="price-tag">₦11,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Chocolate Milkshake</h4></div><span class="price-tag">₦11,000</span></div>
+        </div>
+      </section>
+
+      <!-- Shots / Tots -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-vial text-amber-400"></i> Shots / Tots</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Olmeca</h4></div><span class="price-tag">₦3,500</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Sierra</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Whiskey</h4></div><span class="price-tag">₦2,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Vodka</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Gordon Gin</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Bacardi Rum</h4></div><span class="price-tag">₦3,000</span></div>
+        </div>
+      </section>
+
+      <!-- Beers & Cider -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-beer-mug-empty text-amber-400"></i> Beers & Cider</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Heineken</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Budweiser</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Corona</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Desperados</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Orijin / Smirnoff Ice</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Double Black</h4></div><span class="price-tag">₦3,500</span></div>
+        </div>
+      </section>
+
+      <!-- Mixers & Soft Drinks -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-bottle-water text-amber-400"></i> Mixers & Soft Drinks</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Red Bull</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Coke / Fanta / Sprite</h4></div><span class="price-tag">₦1,500</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Schweppes / Tonic / Soda</h4></div><span class="price-tag">₦3,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Water (Still / Sparkling)</h4></div><span class="price-tag">₦1,000 / ₦4,000</span></div>
+        </div>
+      </section>
+
+      <!-- Freshly Squeezed Juices -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-glass-citrus text-amber-400"></i> Freshly Squeezed Juices</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Pineapple Juice</h4></div><span class="price-tag">₦7,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Orange Juice</h4></div><span class="price-tag">₦7,000</span></div>
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Watermelon Juice</h4></div><span class="price-tag">₦7,000</span></div>
+        </div>
+      </section>
+
+      <!-- Notice Disclaimer -->
+      <div class="text-center bg-amber-400/10 border border-amber-400/30 p-3 rounded-xl max-w-md mx-auto my-6">
+        <p class="text-xs text-amber-300 font-medium tracking-wide">Prices are exclusive of VAT & Service charges</p>
       </div>
+
     </div>
 
-    <!-- Nigerian Heritage -->
-    <div class="mb-10">
-      <div class="section-title"><i class="fa-regular fa-flag"></i> Nigerian Heritage</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-card-special menu-item col-span-1 sm:col-span-2" data-cat="heritage">
-          <div><span class="font-semibold text-white/95">Velvet Moon Snail Jollof</span> <span class="badge-special">Chef's Special</span><p class="text-xs text-white/40 mt-0.5 font-light">Snails in spicy sauce, smoky jollof rice, plantain</p></div>
-          <span class="price-tag text-base">₦23,500</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="heritage">
-          <div><span class="font-medium text-white/90">Fried Chicken & Rice</span><p class="text-xs text-white/40 mt-0.5 font-light">Jollof or fried rice</p></div>
-          <span class="price-tag">₦16,000</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="heritage">
-          <div><span class="font-medium text-white/90">Grilled Croaker</span><p class="text-xs text-white/40 mt-0.5 font-light">Whole fish, fried yam</p></div>
-          <span class="price-tag">₦17,500</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Italian -->
-    <div class="mb-10">
-      <div class="section-title"><i class="fa-regular fa-pizza-slice"></i> Italian Craft</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-item" data-cat="italian">
-          <div><span class="font-medium text-white/90">Lasagna Emigliana</span><p class="text-xs text-white/40 mt-0.5 font-light">Minced meat sauce</p></div>
-          <span class="price-tag">₦26,500</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="italian">
-          <div><span class="font-medium text-white/90">Marry Me Chicken Pizza</span><p class="text-xs text-white/40 mt-0.5 font-light">Parmesan cream, chicken</p></div>
-          <span class="price-tag">₦22,000</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Burgers -->
-    <div class="mb-10">
-      <div class="section-title"><i class="fa-regular fa-burger"></i> Gourmet Burgers</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-item" data-cat="burgers">
-          <div><span class="font-medium text-white/90">Double Cheeseburger</span><p class="text-xs text-white/40 mt-0.5 font-light">Two patties, double cheese</p></div>
-          <span class="price-tag">₦17,000</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="burgers">
-          <div><span class="font-medium text-white/90">Supreme Chicken Burger</span><p class="text-xs text-white/40 mt-0.5 font-light">Gouda, rocket, garlic mayo</p></div>
-          <span class="price-tag">₦13,500</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sharing Platters -->
-    <div class="mb-10">
-      <div class="section-title"><i class="fa-regular fa-utensils"></i> Sharing Platters</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-card-special menu-item col-span-1 sm:col-span-2" data-cat="platters">
-          <div><span class="font-semibold text-white/95">Seafood Platter</span> <span class="badge-special">Feeds 6</span><p class="text-xs text-white/40 mt-0.5 font-light">Prawns, salmon, calamari, shrimp, fries, garlic butter</p></div>
-          <span class="price-tag text-base">₦120,000</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="platters">
-          <div><span class="font-medium text-white/90">Grilled Platter</span><p class="text-xs text-white/40 mt-0.5 font-light">Chicken, wings, fries, plantain</p></div>
-          <span class="price-tag">₦88,000</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="platters">
-          <div><span class="font-medium text-white/90">Nigerian Grill Platter</span><p class="text-xs text-white/40 mt-0.5 font-light">Asun rice, gizzard, plantain</p></div>
-          <span class="price-tag">₦88,000</span>
-        </div>
-        <div class="menu-card menu-item" data-cat="platters">
-          <div><span class="font-medium text-white/90">Signature Platter</span><p class="text-xs text-white/40 mt-0.5 font-light">Wings, spring rolls, samosas</p></div>
-          <span class="price-tag">₦60,000</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Drinks & Cocktails (full list) -->
-    <div class="mb-8">
-      <div class="section-title"><i class="fa-regular fa-wine-glass"></i> Drinks & Cocktails</div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Velvet Moon Vodka</span><p class="text-xs text-white/40 mt-0.5 font-light">House signature</p></div><span class="price-tag">₦50,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">SkyVodka Flavored</span><p class="text-xs text-white/40 mt-0.5 font-light">Crisp finish</p></div><span class="price-tag">₦50,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Absolute</span><p class="text-xs text-white/40 mt-0.5 font-light">Swedish classic</p></div><span class="price-tag">₦60,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Ciroc Original</span><p class="text-xs text-white/40 mt-0.5 font-light">French grape vodka</p></div><span class="price-tag">₦90,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Casamigos Blanco</span><p class="text-xs text-white/40 mt-0.5 font-light">Smooth tequila</p></div><span class="price-tag">₦180,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Ciroc Raspberry</span><p class="text-xs text-white/40 mt-0.5 font-light">Fruit-infused</p></div><span class="price-tag">₦110,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Casamigos Reposado</span><p class="text-xs text-white/40 mt-0.5 font-light">Aged tequila</p></div><span class="price-tag">₦210,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">DonJulio Blanco</span><p class="text-xs text-white/40 mt-0.5 font-light">Crisp tequila</p></div><span class="price-tag">₦210,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Ciroc Pineapple</span><p class="text-xs text-white/40 mt-0.5 font-light">Tropical</p></div><span class="price-tag">₦120,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">DonJulio Reposado</span><p class="text-xs text-white/40 mt-0.5 font-light">Smooth oaky</p></div><span class="price-tag">₦230,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Olme</span><p class="text-xs text-white/40 mt-0.5 font-light">Premium spirit</p></div><span class="price-tag">₦65,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Sierra Tequila</span><p class="text-xs text-white/40 mt-0.5 font-light">Silver, bold</p></div><span class="price-tag">₦50,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Jameson Black Barrel</span><p class="text-xs text-white/40 mt-0.5 font-light">Irish whiskey</p></div><span class="price-tag">₦80,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Hennessy VSOP</span><p class="text-xs text-white/40 mt-0.5 font-light">Cognac</p></div><span class="price-tag">₦100,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Hennessy XO</span><p class="text-xs text-white/40 mt-0.5 font-light">Extra old</p></div><span class="price-tag">₦190,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Martell VS</span><p class="text-xs text-white/40 mt-0.5 font-light">Delicate cognac</p></div><span class="price-tag">₦100,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Martell XO</span><p class="text-xs text-white/40 mt-0.5 font-light">Bold aromas</p></div><span class="price-tag">₦200,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Moet & Chandon Brut</span><p class="text-xs text-white/40 mt-0.5 font-light">Classic champagne</p></div><span class="price-tag">₦160,000</span></div>
-        <div class="menu-card menu-item" data-cat="drinks"><div><span class="font-medium text-white/90">Dom Perignon Brut</span><p class="text-xs text-white/40 mt-0.5 font-light">Prestige vintage</p></div><span class="price-tag">₦90,000</span></div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="text-center text-white/20 text-[11px] font-light border-t border-white/5 pt-6 mt-4 tracking-wide">
-      <p>Prices exclusive of VAT & service charge · All items subject to availability</p>
-    </div>
   </main>
 
-  <script>
-    (function() {
-      const search = document.getElementById('menuSearch');
-      const pills = document.querySelectorAll('.category-pill');
-      const items = document.querySelectorAll('.menu-item');
+  <!-- Footer -->
+  <footer class="text-center text-xs text-white/40 py-8 border-t border-white/10">
+    <p class="font-serif-title tracking-wider text-amber-400/80 mb-1">VELVET MOON</p>
+    <p>© All rights reserved. Please drink responsibly.</p>
+  </footer>
 
-      let activeCategory = 'all';
-
-      function filter() {
-        const query = search.value.toLowerCase().trim();
-        const showAll = activeCategory === 'all';
-
-        items.forEach(el => {
-          const cat = el.dataset.cat;
-          const text = el.innerText.toLowerCase();
-          const matchCat = showAll || cat === activeCategory;
-          const matchSearch = query === '' || text.includes(query);
-          const visible = matchCat && matchSearch;
-
-          el.classList.toggle('highlight', visible);
-          el.classList.toggle('dim', !visible);
-        });
-      }
-
-      pills.forEach(btn => {
-        btn.addEventListener('click', function() {
-          pills.forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
-          activeCategory = this.dataset.cat;
-          filter();
-        });
-      });
-
-      search.addEventListener('input', filter);
-
-      // initial
-      filter();
-    })();
-  </script>
 </body>
 </html>
