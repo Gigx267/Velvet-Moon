@@ -1,3 +1,5 @@
+This is a complete HTML webpage for the "Velvet Moon" restaurant menu. It displays a curated list of food and drink items with their prices, featuring a luxurious dark theme. I've updated the prices and item descriptions as you requested.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,18 +126,44 @@
             </div>
             <span class="price-tag text-lg">₦23,500</span>
           </div>
+          <!-- Updated Fried Chicken & Rice -->
           <div class="menu-card p-4 rounded-xl flex justify-between items-start">
-            <div><h4 class="font-medium text-white/90 text-lg">Fried Chicken & Rice</h4><p class="text-xs text-white/50 mt-1 font-light">Jollof or fried rice</p></div>
+            <div><h4 class="font-medium text-white/90 text-lg">Golden Crispy Crust Chicken</h4><p class="text-xs text-white/50 mt-1 font-light">Served with our signature Royal Fried Rice</p></div>
             <span class="price-tag text-base">₦16,000</span>
           </div>
+          <!-- Updated Grilled Croaker -->
           <div class="menu-card p-4 rounded-xl flex justify-between items-start">
-            <div><h4 class="font-medium text-white/90 text-lg">Grilled Croaker</h4><p class="text-xs text-white/50 mt-1 font-light">Whole fish, fried yam</p></div>
+            <div><h4 class="font-medium text-white/90 text-lg">Signature Chargrilled Croaker</h4><p class="text-xs text-white/50 mt-1 font-light">Flame-grilled croaker served with a vibrant spicy vegetable sauce and golden potato chips</p></div>
             <span class="price-tag text-base">₦17,500</span>
+          </div>
+          <!-- NEW: Slow-Braised Beef in Rich Stew -->
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Slow-Braised Beef in Rich Stew</h4><p class="text-xs text-white/50 mt-1 font-light">Tender beef simmered in a rich, aromatic sauce, served with fragrant steamed white rice.</p></div>
+            <span class="price-tag text-base">₦19,000</span>
           </div>
         </div>
       </section>
 
-      <!-- Italian Craft -->
+      <!-- Caribbean Section (NEW) -->
+      <section class="mb-10">
+        <h3 class="section-title"><i class="fa-solid fa-umbrella-beach text-amber-400"></i> Caribbean</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Honey Garlic Chicken Alfredo</h4><p class="text-xs text-white/50 mt-1 font-light">Creamy alfredo, honey garlic chicken</p></div>
+            <span class="price-tag text-base">₦19,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Cream Chicken Pasta</h4><p class="text-xs text-white/50 mt-1 font-light">Rich cream sauce, tender chicken</p></div>
+            <span class="price-tag text-base">₦14,500</span>
+          </div>
+          <div class="menu-card p-4 rounded-xl flex justify-between items-start">
+            <div><h4 class="font-medium text-white/90 text-lg">Beef Stew with Rice</h4><p class="text-xs text-white/50 mt-1 font-light">Hearty beef stew, steamed rice</p></div>
+            <span class="price-tag text-base">₦19,000</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Italian Craft (removed Alfredo & Bolognese) -->
       <section class="mb-10">
         <h3 class="section-title"><i class="fa-solid fa-pizza-slice text-amber-400"></i> Italian Craft</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -236,14 +264,16 @@
         </div>
       </section>
 
-      <!-- Shots / Tots -->
+      <!-- Shots / Tots (updated House Whiskey & Vodka) -->
       <section class="mb-10">
         <h3 class="section-title"><i class="fa-solid fa-vial text-amber-400"></i> Shots / Tots</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Olmeca</h4></div><span class="price-tag">₦3,500</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Sierra</h4></div><span class="price-tag">₦3,000</span></div>
-          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Whiskey</h4></div><span class="price-tag">₦2,000</span></div>
-          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Vodka</h4></div><span class="price-tag">₦3,000</span></div>
+          <!-- updated House Whiskey -->
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Whiskey</h4></div><span class="price-tag">₦25,000</span></div>
+          <!-- updated House Vodka -->
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">House Vodka</h4></div><span class="price-tag">₦25,000</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Gordon Gin</h4></div><span class="price-tag">₦3,000</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Bacardi Rum</h4></div><span class="price-tag">₦3,000</span></div>
         </div>
@@ -350,15 +380,18 @@
         </div>
       </section>
 
-      <!-- Wines -->
+      <!-- Wines (updated 4 Cousins & added Fourth Street Red) -->
       <section class="mb-10">
         <h3 class="section-title"><i class="fa-solid fa-wine-glass-empty text-amber-400"></i> Wines</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Chamdor (Non-Alcoholic)</h4></div><span class="price-tag">₦20,000</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Carlo Rossi</h4></div><span class="price-tag">₦30,000</span></div>
-          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Four Cousins</h4></div><span class="price-tag">₦36,000</span></div>
+          <!-- updated Four Cousins 25,000 -->
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Four Cousins</h4></div><span class="price-tag">₦25,000</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Baron de Valls</h4></div><span class="price-tag">₦44,000</span></div>
           <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Nederburg</h4></div><span class="price-tag">₦56,000</span></div>
+          <!-- NEW: Fourth Street Red 20,000 -->
+          <div class="menu-card p-3.5 rounded-xl flex justify-between items-center"><div><h4 class="font-medium text-white/90">Fourth Street Red</h4></div><span class="price-tag">₦20,000</span></div>
         </div>
       </section>
 
@@ -387,3 +420,4 @@
 
 </body>
 </html>
+```
